@@ -34,12 +34,14 @@ if(randomBackgroundsLocalItem !== null){
     //Remove active Class from all childrens
     document.querySelectorAll(".random-backgrounds span").forEach(element => {
         element.classList.remove("active");
-        
-    //Add class active in case the background option === background in localStorage
-        if (element.dataset.background === randomBackgrounds) {
-            element.classList.add("active");
-        }
     });  
+    //Add class active in case the background option === background in localStorage
+    if (randomBackgroundsLocalItem === "true") {
+        document.querySelectorAll(".random-backgrounds .yes").classList.add("active");
+    } else{
+        document.querySelectorAll(".random-backgrounds .no").classList.add("active");
+
+    }
 }
 
 //Toggle Spin Class on Icon
