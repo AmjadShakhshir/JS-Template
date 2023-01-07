@@ -1,5 +1,10 @@
 :root{
     --main-color:#60d4a0;
+    --random-background: url('../imgs/2.jpg');
+    --background-img: url('../imgs/4.jpg');
+}
+*{
+    box-sizing: border-box;
 }
 body{
     font-family: 'Open Sans', sans-serif;
@@ -22,7 +27,7 @@ body{
     position: absolute;
     right: -30px;
     top: 150px;
-    background-color: rgba(86, 175, 168);
+    background-color: #56afa8;
     padding: 8px 0;
     width: 30px;
     text-align: center;
@@ -40,26 +45,28 @@ body{
 }
 .settings-box .option-box h4{
     margin: 0;
-    color: rgb(255, 255, 255);
+    color: #ffffff;
+    font-size: 14px;
 }
 .settings-box .option-box .colors-list{
     list-style: none;
     text-align: center;
     padding: 0;
+    margin: 10px 0 0;
 }
 .settings-box .option-box .colors-list li{
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     background-color: #f44949;
     border-radius: 50%;
-    border: 1px solid;
-    border-color: #fff;
+    border: 2px solid #fff;
     cursor: pointer;
     opacity: .5;
     display: inline-block;
 }
 .settings-box .option-box .colors-list li.active {
     opacity: 1;
+    box-shadow: 1px 1px 10px #ffffff;
 }
 .settings-box .option-box .colors-list li:first-child{
     background-color: #60d4a0;
@@ -75,6 +82,58 @@ body{
 }
 .settings-box .option-box .colors-list li:nth-child(5){
     background-color:#ff7f50;
+}
+.settings-box .random-backgrounds .yes,
+.settings-box .random-backgrounds .no{
+    width: 50px;
+    background-color: #FFE0B2;
+    color: #333;
+    margin-top: 20px;
+    display: inline-block;
+    font-size: 12px;
+    padding: 4px 10px;
+    font-weight: bold;
+    border-radius: 4px;
+    opacity: .4;
+    cursor: pointer;
+}
+.settings-box .random-backgrounds .yes:hover,
+.settings-box .random-backgrounds .no:hover{
+    background-color: #fffbf6;
+}
+.settings-box .random-backgrounds span.active{
+    opacity: 1;
+    
+}
+.settings-box .choose-background{
+    padding: 10px;
+    text-align: center;
+    background-color: #af565d;
+    margin: 10px;
+}
+.settings-box .choose-background h4{
+    margin: 0;
+    color: #ffffff;
+    font-size: 14px;
+}
+.settings-box .choose-background .backgrounds-list{
+    list-style: none;
+    text-align: center;
+    padding: 0;
+    margin: 10px 0 0;
+}
+.settings-box .backgrounds-list li{
+    cursor: pointer;
+    opacity: .5;
+    display:inline-flex;
+}
+.settings-box .backgrounds-list li.active {
+    opacity: 1;
+}
+.settings-box .backgrounds-list li img{
+    width: 50px;
+    border: 2px solid #fff;
+    border-radius: 4px;
 }
 /* End Settings Box */
 /* Start Our Page */
@@ -135,6 +194,7 @@ body{
     color: white;
     z-index: 2;
     text-align: center;
+    width: 100%;
 }
 .intro-text h1{
     font-size: 44px;
