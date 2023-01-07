@@ -16,29 +16,31 @@ if(mainColors !== null){
         
 }
 
-const randomBackgrounds = window.localStorage.getItem("background");
-
-// Check if there's Background chosen earlier in localStorage
-if(randomBackgrounds !== null){
-    document.documentElement.style.setProperty('--background-img',randomBackgrounds);
-
-     //Remove active Class from all childrens
-        document.querySelectorAll(".random-backgrounds span").forEach(element => {
-            element.classList.remove("active");
-            
-        //Add class active in case the background option === background in localStorage
-            if (element.dataset.background === randomBackgrounds) {
-                element.classList.add("active");
-            }
-        });
-        
-}
-
 //Random Background Option
-let backgroundOptions = true;
+let backgroundOptions = false;
 
 //Variable To Control The Background Interval
 let backgroundInterval;
+
+const randomBackgroundsLocalItem = window.localStorage.getItem("background");
+
+// Check if there's Background chosen earlier in localStorage
+if(randomBackgroundsLocalItem !== null){
+  if (randomBackgroundsLocalItem === "true") {
+    backgroundOptions = true;
+  } else{
+    backgroundOptions = false;
+  }
+    //Remove active Class from all childrens
+    document.querySelectorAll(".random-backgrounds span").forEach(element => {
+        element.classList.remove("active");
+        
+    //Add class active in case the background option === background in localStorage
+        if (element.dataset.background === randomBackgrounds) {
+            element.classList.add("active");
+        }
+    });  
+}
 
 //Toggle Spin Class on Icon
 document.querySelector(".toggle-settings .fa-gear").onclick = function () {
@@ -70,7 +72,6 @@ colorsLi.forEach(li => {
     });
 });
 
-
 // Switch Random Backgrounds
 const randomBackgroundsElement = document.querySelectorAll(".random-backgrounds span");
 
@@ -82,11 +83,15 @@ randomBackgroundsElement.forEach(spanElement => {
 
         //Remove active Class from all childrens
         e.target.parentElement.querySelectorAll(".active").forEach(element => {
-            document.documentElement.style.setProperty('--background-img', e.target.dataset.background);
+            document.documentElement.style.setProperty('--random-background', e.target.dataset.background);
 
-            //set Main Background color in localStorage
-            window.localStorage.setItem("background-color", e.target.dataset.background);
-
+            //set Main Background Option in localStorage
+            if (e.target.dataset.background === "yes") {
+                window.localStorage.setItem("random-background", true);
+            } else{
+                window.localStorage.setItem("random-background", false);
+            }
+            
             element.classList.remove("active");
         });
 
@@ -109,6 +114,25 @@ randomBackgroundsElement.forEach(spanElement => {
     });
 });
 
+// Switch Background Image
+const backgroundImgLi = document.querySelectorAll(".backgrounds-list li");
+// Loop in all Backgrounds list item
+backgroundImgLi.forEach(imageElement => {
+    //click on Image item
+    imageElement.addEventListener("click", (e) =>{
+       document.documentElement.style.setProperty('--background-img', `url("/${e.currentTarget.dataset.backgroundimg}")`);
+        //set Main Background Image in localStorage
+        window.localStorage.setItem("background-img", e.currentTarget.dataset.backgroundimg);
+        //Remove active Class from all childrens
+        e.currentTarget.parentElement.querySelectorAll(".active").forEach(element => {
+            element.classList.remove("active");
+        });
+        
+        //Add class active on self
+        e.currentTarget.classList.add("active");
+    });
+});
+
 // Select Landing Page Element
 let landingPage = document.querySelector(".landing-page");
 
@@ -128,4 +152,4 @@ function randomizeImgs() {
     }
 }
 
-randomizeImgs();
+//randomizeImgs();

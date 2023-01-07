@@ -1,6 +1,5 @@
 :root{
     --main-color:#60d4a0;
-    --random-background: url('../imgs/2.jpg');
     --background-img: url('../imgs/4.jpg');
 }
 *{
@@ -134,12 +133,40 @@ body{
     width: 50px;
     border: 2px solid #fff;
     border-radius: 4px;
+    position: relative;
+}
+.settings-box .backgrounds-list span {
+    /*CSS for enlarged image*/
+    position: absolute;
+    left: -1000px;
+    visibility: hidden;
+    color: black;
+    text-decoration: none;
+    z-index: 50;
+}
+
+.settings-box .backgrounds-list span img {
+    /*CSS for enlarged image*/
+    border: 1px solid #fff;
+    border-radius: 5px;
+    width: 100px;
+    height: 66px;
+}
+
+.settings-box .backgrounds-list li:hover span {
+    /*CSS for enlarged image on hover*/
+    visibility: visible;
+    opacity: 1;
+    left: 65px;
+    top: 9em;
+    /*position where enlarged image should offset horizontally */
+
 }
 /* End Settings Box */
 /* Start Our Page */
 .landing-page{
     min-height: 100vh;
-    background-image: url('../imgs/4.jpg');
+    background-image: var(--background-img);
     background-size: cover;
     position: relative;
 }
