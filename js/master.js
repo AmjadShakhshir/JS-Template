@@ -179,34 +179,34 @@ function randomizeImgs() {
 //     });
 // }
 
-// // Select Skills Selector
-// let ourSkills = document.querySelector(".skills");
+// Select Skills Selector
+let ourSkills = document.querySelector(".skills");
 
-// window.onscroll = function () {
+window.onscroll = function () {
     
-//     // Skills Offset Top
-//     let skillsOffsetTop = ourSkills.offsetTop;
+    // Skills Offset Top
+    let skillsOffsetTop = ourSkills.offsetTop;
 
-//     //Skills Outer Height
-//     let skillsOuterHeight = ourSkills.offsetHeight;
+    //Skills Outer Height
+    let skillsOuterHeight = ourSkills.offsetHeight;
 
-//     //Window Height
-//     let windowHeight = this.innerHeight;
+    //Window Height
+    let windowHeight = this.innerHeight;
 
-//     //Window Scroll Top
-//     let windowScrollTop = this.pageYOffset;
+    //Window Scroll Top
+    let windowScrollTop = this.pageYOffset;
 
-//     if (windowScrollTop > (skillsOffsetTop + skillsOuterHeight - windowHeight)){
+    if (windowScrollTop > (skillsOffsetTop + skillsOuterHeight - windowHeight)){
 
-//         let allSkills = document.querySelectorAll(".skill-box .skill-progress span");
+        let allSkills = document.querySelectorAll(".skill-box .skill-progress span");
 
-//         allSkills.forEach(skill => {
-//             skill.style.width = skill.dataset.progress;
-//         });
+        allSkills.forEach(skill => {
+            skill.style.width = skill.dataset.progress;
+        });
 
-//     }
+    }
 
-// }; 
+}; 
 
 
 // Select All Bullets
