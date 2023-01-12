@@ -16,33 +16,33 @@ if(mainColors !== null){
         
 }
 
-//Random Background Option
-let backgroundOptions = false;
+// //Random Background Option
+// let backgroundOptions = false;
 
-//Variable To Control The Background Interval
-let backgroundInterval;
+// //Variable To Control The Background Interval
+// let backgroundInterval;
 
-const randomBackgroundsLocalItem = window.localStorage.getItem("background");
+// const randomBackgroundsLocalItem = window.localStorage.getItem("background");
 
-// Check if there's Background chosen earlier in localStorage
-if(randomBackgroundsLocalItem !== null){
-  if (randomBackgroundsLocalItem === "true") {
-    backgroundOptions = true;
-  } else{
-    backgroundOptions = false;
-  }
-    //Remove active Class from all childrens
-    document.querySelectorAll(".random-backgrounds span").forEach(element => {
-        element.classList.remove("active");
-    });  
-    //Add class active in case the background option === background in localStorage
-    if (randomBackgroundsLocalItem === "true") {
-        document.querySelectorAll(".random-backgrounds .yes").classList.add("active");
-    } else{
-        document.querySelectorAll(".random-backgrounds .no").classList.add("active");
+// // Check if there's Background chosen earlier in localStorage
+// if(randomBackgroundsLocalItem !== null){
+//   if (randomBackgroundsLocalItem === "true") {
+//     backgroundOptions = true;
+//   } else{
+//     backgroundOptions = false;
+//   }
+//     //Remove active Class from all childrens
+//     document.querySelectorAll(".random-backgrounds span").forEach(element => {
+//         element.classList.remove("active");
+//     });  
+//     //Add class active in case the background option === background in localStorage
+//     if (randomBackgroundsLocalItem === "true") {
+//         document.querySelectorAll(".random-backgrounds .yes").classList.add("active");
+//     } else{
+//         document.querySelectorAll(".random-backgrounds .no").classList.add("active");
 
-    }
-}
+//     }
+// }
 
 //Toggle Spin Class on Icon
 document.querySelector(".toggle-settings .fa-gear").onclick = function () {
@@ -74,47 +74,47 @@ colorsLi.forEach(li => {
     });
 });
 
-// Switch Random Backgrounds
-const randomBackgroundsElement = document.querySelectorAll(".random-backgrounds span");
+// // Switch Random Backgrounds
+// const randomBackgroundsElement = document.querySelectorAll(".random-backgrounds span");
 
-// Loop in all spans
-randomBackgroundsElement.forEach(spanElement => {
+// // Loop in all spans
+// randomBackgroundsElement.forEach(spanElement => {
 
-    //click on span
-    spanElement.addEventListener("click", (e) =>{
+//     //click on span
+//     spanElement.addEventListener("click", (e) =>{
 
-        //Remove active Class from all childrens
-        e.target.parentElement.querySelectorAll(".active").forEach(element => {
-            document.documentElement.style.setProperty('--random-background', e.target.dataset.background);
+//         //Remove active Class from all childrens
+//         e.target.parentElement.querySelectorAll(".active").forEach(element => {
+//             document.documentElement.style.setProperty('--random-background', e.target.dataset.background);
 
-            //set Main Background Option in localStorage
-            if (e.target.dataset.background === "yes") {
-                window.localStorage.setItem("random-background", true);
-            } else{
-                window.localStorage.setItem("random-background", false);
-            }
+//             //set Main Background Option in localStorage
+//             if (e.target.dataset.background === "yes") {
+//                 window.localStorage.setItem("random-background", true);
+//             } else{
+//                 window.localStorage.setItem("random-background", false);
+//             }
             
-            element.classList.remove("active");
-        });
+//             element.classList.remove("active");
+//         });
 
-        //Add class active on self
-        e.target.classList.add("active");
+//         //Add class active on self
+//         e.target.classList.add("active");
 
-        if(e.target.dataset.background === "yes"){
+//         if(e.target.dataset.background === "yes"){
 
-            backgroundOptions = true;
+//             backgroundOptions = true;
 
-            randomizeImgs();
+//             randomizeImgs();
 
-        } else{
+//         } else{
             
-            backgroundOptions = false;
+//             backgroundOptions = false;
 
-            clearInterval(backgroundInterval);
+//             clearInterval(backgroundInterval);
 
-        }
-    });
-});
+//         }
+//     });
+// });
 
 // Switch Background Image
 const backgroundImgLi = document.querySelectorAll(".backgrounds-list li");
@@ -154,4 +154,81 @@ function randomizeImgs() {
     }
 }
 
-//randomizeImgs();
+// function addSkillToOptionBox() {
+//     const addSkill = document.querySelector(".skills-list");
+//     const addSkillDiv = document.createElement("div");
+//     const addSkillLi = document.createElement("li");
+
+//     addSkillDiv.className = "popup";
+//     addSkillDiv.style.cssText = "width: 300px; height: 160px; background-color: #f6f6f6; border-radius: 6px; position:fixed; top: 31%; left: 10%; display: flex;color: #ef0008;";
+
+//     addSkillDiv.innerHTML = '<span style="margin-left:10px;"><p>Skill: </p><input type="text" style="width:130px;" name="skill" value="" /><p> Progress: </p><input type="text" style="width:130px;" name="progress" value="" /></span>';
+
+//     addSkill.insertBefore(addSkillDiv, addSkill.lastElementChild);
+    
+//     addSkillDiv.addEventListener("keypress", (e) => {
+//         if (e.key === "Enter") {
+            
+//             const addSkillLiPara = document.createTextNode(e.currentTarget.querySelector("input[name='skill']").value);
+//             addSkillLi.appendChild(addSkillLiPara);
+//             addSkill.insertBefore(addSkillLi, addSkill.lastElementChild);
+//             addSkillDiv.remove();
+//             console.log(e.currentTarget.querySelector("input[name='progress']").value);
+//         }
+            
+//     });
+// }
+
+// // Select Skills Selector
+// let ourSkills = document.querySelector(".skills");
+
+// window.onscroll = function () {
+    
+//     // Skills Offset Top
+//     let skillsOffsetTop = ourSkills.offsetTop;
+
+//     //Skills Outer Height
+//     let skillsOuterHeight = ourSkills.offsetHeight;
+
+//     //Window Height
+//     let windowHeight = this.innerHeight;
+
+//     //Window Scroll Top
+//     let windowScrollTop = this.pageYOffset;
+
+//     if (windowScrollTop > (skillsOffsetTop + skillsOuterHeight - windowHeight)){
+
+//         let allSkills = document.querySelectorAll(".skill-box .skill-progress span");
+
+//         allSkills.forEach(skill => {
+//             skill.style.width = skill.dataset.progress;
+//         });
+
+//     }
+
+// }; 
+
+
+// Select All Bullets
+const allBullets = document.querySelectorAll(".nav-bullets .bullet");
+
+// Select All menuLinks
+const allLinks = document.querySelectorAll(".menuLinks a");
+
+function scrollToTheSection(elements) {
+    elements.forEach( element => {
+
+        element.addEventListener("click", (e) =>{
+
+            e.preventDefault();
+
+            document.querySelector(e.target.dataset.section).scrollIntoView({
+
+                behavior: 'smooth'
+            });
+        });
+    });
+}
+
+scrollToTheSection(allBullets);
+scrollToTheSection(allLinks);

@@ -8,6 +8,12 @@
 body{
     font-family: 'Open Sans', sans-serif;
 }
+.container{
+    width: 1170px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: auto;
+}
 /* Start Settings Box */
 .settings-box{
     position: fixed;
@@ -104,18 +110,7 @@ body{
     opacity: 1;
     
 }
-.settings-box .choose-background{
-    padding: 10px;
-    text-align: center;
-    background-color: #af565d;
-    margin: 10px;
-}
-.settings-box .choose-background h4{
-    margin: 0;
-    color: #ffffff;
-    font-size: 14px;
-}
-.settings-box .choose-background .backgrounds-list{
+.settings-box .option-box .backgrounds-list{
     list-style: none;
     text-align: center;
     padding: 0;
@@ -123,13 +118,13 @@ body{
 }
 .settings-box .backgrounds-list li{
     cursor: pointer;
-    opacity: .5;
+    opacity: .8;
     display:inline-flex;
 }
 .settings-box .backgrounds-list li.active {
     opacity: 1;
 }
-.settings-box .backgrounds-list li img{
+.settings-box .backgrounds-list li img {
     width: 50px;
     border: 2px solid #fff;
     border-radius: 4px;
@@ -144,15 +139,15 @@ body{
     text-decoration: none;
     z-index: 50;
 }
-
 .settings-box .backgrounds-list span img {
     /*CSS for enlarged image*/
     border: 1px solid #fff;
     border-radius: 5px;
     width: 100px;
     height: 66px;
+    top: 5px;
+    left: 20px;
 }
-
 .settings-box .backgrounds-list li:hover span {
     /*CSS for enlarged image on hover*/
     visibility: visible;
@@ -160,15 +155,70 @@ body{
     left: 65px;
     top: 9em;
     /*position where enlarged image should offset horizontally */
-
+}
+.settings-box .option-box .skills-list {
+    list-style: none;
+    text-align: left;
+    padding: 0;
+    margin: 10px 0 0;
+}
+.settings-box .option-box .skills-list {
+    color:#fff;
+    text-decoration: none;
 }
 /* End Settings Box */
+/* Start Nav Bullets */
+.nav-bullets {
+    position: fixed;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%); /* If I don't know the height I should use this */
+    width: 50px;
+    z-index: 1000;
+}
+.nav-bullets .bullet {
+    width: 20px;
+    height: 20px;
+    border: 3px solid var(--main-color);
+    margin: 20px auto;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+}
+.nav-bullets .bullet:hover .tooltip {
+    display: block;
+}
+.nav-bullets .bullet .tooltip {
+    padding: 8px 10px;
+    right: 32px;
+    top: -10px;
+    color: #fff;
+    position: absolute;
+    background-color: var(--main-color);
+    width: 100px;
+    text-align: center;
+    display: none;
+}
+.nav-bullets .bullet .tooltip::before {
+    content: '';
+    border-style: solid;
+    border-width: 10px;
+    border-color: transparent transparent transparent var(--main-color);
+    height: 0;
+    width: 0;
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+/* End Nav Bullets */
 /* Start Our Page */
-.landing-page{
-    min-height: 100vh;
+.landing-page {
+    /* min-height: 100vh; */
     background-image: var(--background-img);
     background-size: cover;
     position: relative;
+    height: 380px;
 }
 
 .landing-page .overlay{
@@ -224,14 +274,192 @@ body{
     width: 100%;
 }
 .intro-text h1{
-    font-size: 44px;
+    font-size: 34px;
 }
 .intro-text h1 span{
     color: var(--main-color);
 }
 .intro-text p{
     line-height: 1.6;
-    font-size: 24px;
+    font-size: 48px;
     margin: 0;
 }
+.intro-text p span{
+    color: var(--main-color);
+}
 /* END Our Page */
+/* Start About Me */
+.about-me{    
+    padding-top: 50px;
+    padding-bottom: 50px;
+    display: flex;
+}
+.about-me .info-box{    
+    flex: 1;
+    padding: 30px;
+}
+.about-me .info-box h2{    
+    font-weight: bold;
+    font-size: 30px;
+    color: var(--main-color);
+    margin: 0 0 10px;
+}
+.about-me .info-box p{    
+    line-height: 1.8;
+    color: #777;
+    margin: 0;
+}
+.about-me .image-box{    
+    flex: 1;
+    text-align: center;
+}
+.about-me .image-box img{    
+    width: 250px;
+    height: 280px;
+    border-radius: 50%;
+}
+/* End About Me */
+/* Start Skills */
+.skills{
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background-color: #eee;
+}
+.skills h2{
+    font-weight: bold;
+    font-size: 30px;
+    color: var(--main-color);
+    margin: 0 0 50px;
+    text-align: center;
+}
+.skills .skill-box{
+    background-color: #fff;
+    display: flex;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+.skills .skill-box .skill-name{
+    font-weight: bold;
+    width: 100px;
+    text-align: center;
+    line-height: 30px;
+}
+.skills .skill-box .skill-progress{
+    height: 30px;
+    width: 100%;
+    background-color: #f6f6f6;
+    border-radius: 6px;
+    position: relative;
+    overflow: hidden;
+}
+.skills .skill-box .skill-progress span{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 100%;
+    background-color: var(--main-color);
+    transition: all .3s;
+}
+/* End Skills */
+/* Start Experience */
+.experience {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background-color: #f6f6f6;
+}
+.experience .experience-content {
+    position: relative;
+    overflow: hidden;
+}
+.experience .experience-content:before {
+    content: '';
+    width: 2px;
+    height: 100%;
+    background-color: var(--main-color);
+    position: absolute;
+    left: 50%;
+    margin-left: -1px;
+    top: 0;
+}
+.experience .experience-content .year{
+    margin: 20px auto; /* To make it in the center */
+    width: 50px;
+    background-color: var(--main-color);
+    position: relative;
+    z-index: 2;
+    border-radius: 4px;
+    text-align: center;
+    color: #fff;
+    padding: 2px 5px;
+    font-weight: bold;
+}
+.experience .experience-content .left,
+.experience .experience-content .right{
+    width: calc(50% - 25px);
+    margin-bottom: 40px;
+    position: relative;
+}
+.experience .experience-content .left{
+    float: left;
+}
+.experience .experience-content .left:before {
+    right: -35px;
+}
+.experience .experience-content .right{
+    float: right;
+}
+.experience .experience-content .right:before{
+    left: -35px;
+}
+.experience .experience-content .left:before, 
+.experience .experience-content .right:before {
+    content: '';
+    width: 14px;
+    height: 14px;
+    background-color: #fff;
+    border: 3px solid var(--main-color);
+    position: absolute;
+    border-radius: 50%;
+    top: 20px;
+}
+.experience .experience-content .content {
+    padding: 20px;
+    background-color: #fff;
+}
+.experience .experience-content .content h3{
+    font-weight: bold;
+    color: var(--main-color);
+    margin: 0 0 10px;
+}
+.experience .experience-content .content p {
+    color: #666;
+    margin: 0;
+    line-height: 1.6;
+}
+.clearfix{
+    clear: both;
+}
+.experience .experience-content .left .content:before{
+    content: '';
+    border-style: solid;
+    border-width: 10px;
+    border-color: transparent transparent transparent #fff;
+    height: 0;
+    width: 0;
+    position: absolute;
+    right: -20px;
+    top: 20px;
+}
+.experience .experience-content .right .content:before{
+    content: '';
+    border-style: solid;
+    border-width: 10px;
+    border-color: transparent #fff transparent transparent ;
+    height: 0;
+    width: 0;
+    position: absolute;
+    left: -20px;
+    top: 20px;
+}
+/* End Experience */

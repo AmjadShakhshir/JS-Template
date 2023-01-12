@@ -28,14 +28,14 @@
                     <li data-color="#ff7f50"></li>
                 </ul>
             </div>
-            <div class="option-box">
+            <!-- <div class="option-box">
                 <h4> Background Options</h4>
                 <div class="random-backgrounds">
                     <span class="yes" data-background = "yes">Yes</span>
                     <span class="no active" data-background="no">No</span>
                 </div>
-            </div>
-            <div class="choose-background">
+            </div> -->
+            <div class="option-box">
                 <h4>Choose Background</h4>
                 <ul class="backgrounds-list">
                     <li class="active" data-backgroundImg = "imgs/1.jpg">
@@ -55,28 +55,162 @@
                     </li>
                 </ul>
             </div>
+            <div class="option-box">
+                <h4>Add Skills</h4>
+                <u class="skills-list">
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>JavaScript</li>
+                    <li><input type="button" id="more_fields" onclick="addSkillToOptionBox();" value="Add More" /></li>
+                </u>
+            </div>
         </div>
     </div>
     <!-- End Settings box -->
+
+    <!-- Start Nav Bullets -->
+    <div class="nav-bullets">
+        <div class="bullet" data-section=".landing-page">
+           <div class="tooltip">Top</div>
+        </div>
+        <div class="bullet" data-section=".about-me">
+           <div class="tooltip">About Me</div>
+        </div>
+        <div class="bullet" data-section=".skills">
+            <div class="tooltip">Skills</div>
+        </div>
+        <div class="bullet" data-section=".experience">
+            <div class="tooltip">Experience</div>
+        </div>
+        <div class="bullet" data-section="#">
+            <div class="tooltip">Contact</div>
+        </div>
+    </div>
+    <!-- End Nav Bullets -->
+
     <!-- Start Our Page -->
     <div class="landing-page">
         <div class="overlay"></div>
         <div class="header-area">
             <div class="logo">Amjad Shakhshir</div>
             <ul class="menuLinks">
-                <li> <a href="#" class="active">About</a></li>
-                <li><a href="#">Experience</a></li>
-                <li><a href="#">Skills</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="#" data-section=".about-me" class="active">About</a></li>
+                <li><a href="#" data-section=".skills">Skills</a></li>
+                <li><a href="#" data-section=".experience">Experience</a></li>
+                <li><a href="#" data-section="#">Contact</a></li>
             </ul>
         </div>
         <div class="intro-text">
             <h1><span>Amjad </span>Shakhshir</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab cum deleniti impedit.</p>
+            <p>I'm a <span> Web</span> Developer</p>
         </div>
     </div>
     <!-- End Our Page -->
 
+    <!-- Start About Me -->
+   <div class="container">
+    <div class="about-me">
+        <div class="info-box">
+            <h2>About Me</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae odio ratione quaerat neque eaque, non alias adipisci est, reprehenderit, distinctio itaque laborum. Reiciendis odit possimus repudiandae, vitae velit pariatur nesciunt.</p>
+        </div>
+        <div class="image-box">
+            <img src="imgs/Amjad.jpg" alt="">
+        </div>
+    </div>
+   </div>
+    <!-- End About Me -->
+
+    <!-- Start My Skills -->
+    <div class="skills">
+        <div class="container">
+            <h2>My Skills</h2>
+            <div class="skill-box">
+                <div class="skill-name">HTML</div>
+                <div class="skill-progress">
+                    <span data-progress="90%"></span>
+                </div>
+            </div>
+            <div class="skill-box">
+                <div class="skill-name">CSS</div>
+                <div class="skill-progress">
+                    <span data-progress="80%"></span>
+                </div>
+            </div>
+            <div class="skill-box">
+                <div class="skill-name">JavaScript</div>
+                <div class="skill-progress">
+                    <span data-progress="70%"></span>
+                </div>
+            </div>
+            <div class="skill-box">
+                <div class="skill-name">Python</div>
+                <div class="skill-progress">
+                    <span data-progress="70%"></span>
+                </div>
+            </div>
+            <div class="skill-box">
+                <div class="skill-name">MySql</div>
+                <div class="skill-progress">
+                    <span data-progress="80%"></span>
+                </div>
+            </div>
+            <div class="skill-box">
+                <div class="skill-name">Git/Github</div>
+                <div class="skill-progress">
+                    <span data-progress="80%"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End My Skills -->
+
+    <!-- Start Experience -->
+    <div class="experience">
+        <div class="container">
+            <div class="experience-content">
+
+                <div class="year">2018</div>
+
+                <div class="left">
+                    <div class="content">
+                        <h3>Testing Heading</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis quo quae eaque molestias? Magnam laboriosam quisquam expedita, iure, quibusdam cum ducimus odit libero voluptatem, numquam eum repellendus modi ut eaque.</p>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="right">
+                    <div class="content">
+                        <h3>Testing Heading</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis quo quae eaque molestias? Magnam laboriosam
+                            quisquam expedita, iure, quibusdam cum ducimus odit libero voluptatem, numquam eum repellendus modi ut
+                            eaque.</p>
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+                <div class="year">2016</div>
+                
+                <div class="left">
+                    <div class="content">
+                        <h3>Testing Heading</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis quo quae eaque molestias? Magnam laboriosam quisquam expedita, iure, quibusdam cum ducimus odit libero voluptatem, numquam eum repellendus modi ut eaque.</p>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="right">
+                    <div class="content">
+                        <h3>Testing Heading</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis quo quae eaque molestias? Magnam laboriosam
+                            quisquam expedita, iure, quibusdam cum ducimus odit libero voluptatem, numquam eum repellendus modi ut
+                            eaque.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <!-- End Experience -->
     <script src="js/master.js"></script>
     <script src="https://kit.fontawesome.com/a373dee00a.js" crossorigin="anonymous"></script>
 </body>
