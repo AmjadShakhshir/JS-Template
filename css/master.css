@@ -9,7 +9,6 @@ body{
     font-family: 'Open Sans', sans-serif;
 }
 .container{
-    width: 1170px;
     padding-left: 15px;
     padding-right: 15px;
     margin: auto;
@@ -88,7 +87,7 @@ body{
 .settings-box .option-box .colors-list li:nth-child(5){
     background-color:#ff7f50;
 }
-.settings-box .random-backgrounds .yes,
+/* .settings-box .random-backgrounds .yes,
 .settings-box .random-backgrounds .no{
     width: 50px;
     background-color: #FFE0B2;
@@ -109,7 +108,7 @@ body{
 .settings-box .random-backgrounds span.active{
     opacity: 1;
     
-}
+} */
 .settings-box .option-box .backgrounds-list{
     list-style: none;
     text-align: center;
@@ -118,11 +117,10 @@ body{
 }
 .settings-box .backgrounds-list li{
     cursor: pointer;
-    opacity: .8;
     display:inline-flex;
 }
 .settings-box .backgrounds-list li.active {
-    opacity: 1;
+    box-shadow: 1px 1px 10px #fff;
 }
 .settings-box .backgrounds-list li img {
     width: 50px;
@@ -156,7 +154,31 @@ body{
     top: 9em;
     /*position where enlarged image should offset horizontally */
 }
-.settings-box .option-box .skills-list {
+.settings-box .bullets-option .yes,
+.settings-box .bullets-option .no {
+    width: 50px;
+    background-color: #FFE0B2;
+    color: #333;
+    margin-top: 20px;
+    display: inline-block;
+    font-size: 12px;
+    padding: 4px 10px;
+    font-weight: bold;
+    border-radius: 4px;
+    opacity: .4;
+    cursor: pointer;
+}
+
+.settings-box .bullets-option .yes:hover,
+.settings-box .bullets-option .no:hover {
+    background-color: #fffbf6;
+}
+
+.settings-box .bullets-option span.active {
+    opacity: 1;
+
+}
+/* .settings-box .option-box .skills-list {
     list-style: none;
     text-align: left;
     padding: 0;
@@ -165,6 +187,19 @@ body{
 .settings-box .option-box .skills-list {
     color:#fff;
     text-decoration: none;
+} */
+
+.settings-box .reset-options{
+    background-color: var(--main-color);
+    color: #fff;
+    border: 2px solid #fff;
+    margin: 10px auto;
+    padding: 10px;
+    width: 180px;
+    display: block;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
 }
 /* End Settings Box */
 /* Start Nav Bullets */
@@ -242,13 +277,14 @@ body{
     padding: 15px;
     font-weight: bold;
 }
-.header-area .menuLinks {
-    list-style: none;
-    padding-right: 20px;
-    padding-left: 0;
+.header-area .links-container{
     width: 100%;
     text-align: right;
-    font-size: 15px;
+}
+.header-area .menuLinks {
+    list-style: none;
+    padding-left: 0;
+    text-align: right;
 }
 .header-area .menuLinks li{
     display: inline-block;
@@ -262,6 +298,33 @@ body{
 .header-area .menuLinks li a:hover,
 .header-area .menuLinks li a.active{
     color:var(--main-color);
+}
+.header-area .toggle-menu {
+    background: none;
+    border: none;
+    width: 40px;
+    cursor: pointer;
+    margin-top: 15px;
+    display: none;
+}
+.header-area .toggle-menu:before {
+    content: '';
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent transparent #fff transparent;
+    position: absolute;
+    bottom: 2px;
+    right: 20px;
+    text-align: right;
+}
+.header-area .toggle-menu:focus {
+    outline: none;
+}
+.header-area .toggle-menu span {
+    display: block;
+    background-color: #fff;
+    height: 4px;
+    margin-bottom: 4px;
 }
 .intro-text{
     position: absolute;
@@ -286,6 +349,31 @@ body{
 }
 .intro-text p span{
     color: var(--main-color);
+}
+@media (max-width: 991px){
+    .header-area .menuLinks {
+        display: none;
+    }
+    .header-area .menuLinks.open {
+        background-color: #fff;
+        padding: 10px;
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 50px;
+        width: 100%;
+        border-radius: 4px;
+    }
+    .header-area .menuLinks.open li {
+        margin: 10px;
+    }
+    .header-area .menuLinks.open li a {
+        color: var(--main-color);
+        font-weight: bold;
+    }
+    .header-area .toggle-menu {
+        display: inline-block;
+    }
 }
 /* END Our Page */
 /* Start About Me */
@@ -463,3 +551,25 @@ body{
     top: 20px;
 }
 /* End Experience */
+/* Start Grid System */
+@media (min-width: 576px) { /* Small Devices  */
+    .container {
+        max-width: 540px;
+    }
+}
+@media (min-width: 768px) { /* Medium Devices => Tablets */
+    .container {
+        max-width: 720px;
+    }
+}
+@media (min-width: 992px) { /* Desktops */
+    .container {
+        max-width: 960px;
+    }
+}
+@media (min-width: 1200px) { /* Large Screens */
+    .container {
+        max-width: 1140px;
+    }
+}
+/* End Grid System */

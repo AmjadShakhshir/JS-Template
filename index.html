@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="shortcut icon" href="#" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap">
     <title>Amjad Portfolio</title>
 </head>
@@ -55,7 +56,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="option-box">
+            <!-- <div class="option-box">
                 <h4>Add Skills</h4>
                 <u class="skills-list">
                     <li>HTML</li>
@@ -63,7 +64,16 @@
                     <li>JavaScript</li>
                     <li><input type="button" id="more_fields" onclick="addSkillToOptionBox();" value="Add More" /></li>
                 </u>
+            </div> -->
+            <div class="option-box">
+                <h4> Bullets Options</h4>
+                <div class="bullets-option">
+                    <span class="yes" data-display="yes">Yes</span>
+                    <span class="no active" data-display="no">No</span>
+                </div>
             </div>
+
+            <button class="reset-options">Reset Options</button>
         </div>
     </div>
     <!-- End Settings box -->
@@ -82,9 +92,6 @@
         <div class="bullet" data-section=".experience">
             <div class="tooltip">Experience</div>
         </div>
-        <div class="bullet" data-section="#">
-            <div class="tooltip">Contact</div>
-        </div>
     </div>
     <!-- End Nav Bullets -->
 
@@ -93,12 +100,18 @@
         <div class="overlay"></div>
         <div class="header-area">
             <div class="logo">Amjad Shakhshir</div>
-            <ul class="menuLinks">
-                <li><a href="#" data-section=".about-me" class="active">About</a></li>
-                <li><a href="#" data-section=".skills">Skills</a></li>
-                <li><a href="#" data-section=".experience">Experience</a></li>
-                <li><a href="#" data-section="#">Contact</a></li>
-            </ul>
+            <div class="links-container">
+                <ul class="menuLinks open">
+                    <li><a href="#" data-section=".about-me" class="active">About</a></li>
+                    <li><a href="#" data-section=".skills">Skills</a></li>
+                    <li><a href="#" data-section=".experience">Experience</a></li>
+                </ul>
+                <button class="toggle-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
         </div>
         <div class="intro-text">
             <h1><span>Amjad </span>Shakhshir</h1>

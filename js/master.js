@@ -1,4 +1,4 @@
-const mainColors = window.localStorage.getItem("color");
+const mainColors = window.localStorage.getItem("main-color");
 
 // Check if there's color chosen earlier in localStorage
 if(mainColors !== null){
@@ -64,13 +64,7 @@ colorsLi.forEach(li => {
         //set Main Color in localStorage
         window.localStorage.setItem("main-color", e.target.dataset.color);
         
-        //Remove active Class from all childrens
-        e.target.parentElement.querySelectorAll(".active").forEach(element => {
-            element.classList.remove("active");
-        });
-
-        //Add class active on self
-        e.target.classList.add("active");
+        handleActive(e);
     });
 });
 
@@ -125,13 +119,8 @@ backgroundImgLi.forEach(imageElement => {
        document.documentElement.style.setProperty('--background-img', `url("/${e.currentTarget.dataset.backgroundimg}")`);
         //set Main Background Image in localStorage
         window.localStorage.setItem("background-img", e.currentTarget.dataset.backgroundimg);
-        //Remove active Class from all childrens
-        e.currentTarget.parentElement.querySelectorAll(".active").forEach(element => {
-            element.classList.remove("active");
-        });
-        
-        //Add class active on self
-        e.currentTarget.classList.add("active");
+
+        handleActive(e)
     });
 });
 
@@ -142,17 +131,17 @@ let landingPage = document.querySelector(".landing-page");
 let imgsArray = ["1.jpg","2.jpg","3.jpg","4.jpg","5.jpg"];
 
 
-function randomizeImgs() {
-    if (backgroundOptions === true){
-        backgroundInterval = setInterval(() => {
-            //Get Random Number
-            let randomNumber = Math.floor(Math.random() * imgsArray.length);
+// function randomizeImgs() {
+//     if (backgroundOptions === true){
+//         backgroundInterval = setInterval(() => {
+//             //Get Random Number
+//             let randomNumber = Math.floor(Math.random() * imgsArray.length);
 
-            //Change Background Image Url
-            landingPage.style.backgroundImage = `url("imgs/${randomNumber+1}.jpg")`;
-        }, 1000);
-    }
-}
+//             //Change Background Image Url
+//             landingPage.style.backgroundImage = `url("imgs/${randomNumber+1}.jpg")`;
+//         }, 1000);
+//     }
+// }
 
 // function addSkillToOptionBox() {
 //     const addSkill = document.querySelector(".skills-list");
@@ -217,18 +206,104 @@ const allLinks = document.querySelectorAll(".menuLinks a");
 
 function scrollToTheSection(elements) {
     elements.forEach( element => {
+        if (element !== null) {
+            element.addEventListener("click", (e) =>{
 
-        element.addEventListener("click", (e) =>{
+                e.preventDefault();
 
-            e.preventDefault();
+                document.querySelector(e.target.dataset.section).scrollIntoView({
 
-            document.querySelector(e.target.dataset.section).scrollIntoView({
-
-                behavior: 'smooth'
+                    behavior: 'smooth'
+                });
             });
-        });
+        }
+        
     });
 }
 
 scrollToTheSection(allBullets);
 scrollToTheSection(allLinks);
+
+function handleActive(e) {
+    
+    //Remove active Class from all childrens
+    e.currentTarget.parentElement.querySelectorAll(".active").forEach(element => {
+        element.classList.remove("active");
+    });
+    
+    // Add class active on self
+    e.currentTarget.classList.add("active");
+
+}
+
+
+// Show Bullets Option
+
+let bulletsSpan = document.querySelectorAll(".bullets-option span");
+
+let bulletsContainer = document.querySelector(".nav-bullets");
+
+let bulletLocalItem = localStorage.getItem("bullets-option");
+
+if (bulletLocalItem !== null) {
+
+    bulletsSpan.forEach(span => {
+
+        span.classList.remove("active");
+
+    });
+
+    if (bulletLocalItem === "block") {
+
+        bulletsContainer.style.display = "block";
+
+        document.querySelector(".bullets-option .yes").classList.add("active");
+        
+    } else {
+
+        bulletsContainer.style.display = "none";
+
+        document.querySelector(".bullets-option .no").classList.add("active");
+
+    }
+    
+}
+
+bulletsSpan.forEach(span => {
+    span.addEventListener("click", (e) => {
+
+        if (e.target.dataset.display === "yes") {
+
+            bulletsContainer.style.display = "block";
+
+            localStorage.setItem("bullets-option", "block");
+
+        } else {
+
+            bulletsContainer.style.display = "none";
+
+            localStorage.setItem("bullets-option", "none");
+
+
+        }
+
+        handleActive(e);
+
+    });
+});
+
+// Reset Button
+document.querySelector(".reset-options").onclick = function () {
+    
+    localItems = ["bullets-option", "main-color", "background-img"];
+
+    localItems.forEach(item => {
+
+        localStorage.removeItem(item);
+
+        // Reload the page after Reset options
+        window.location.reload();
+
+    });
+
+};
