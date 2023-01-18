@@ -1,3 +1,4 @@
+
 const mainColors = window.localStorage.getItem("main-color");
 
 // Check if there's color chosen earlier in localStorage
@@ -301,9 +302,44 @@ document.querySelector(".reset-options").onclick = function () {
 
         localStorage.removeItem(item);
 
-        // Reload the page after Reset options
+        // Window Reload After pressing on Reset Options
         window.location.reload();
 
     });
 
+};
+
+// Toggle Menu
+let toggleBtn = document.querySelector(".toggle-menu");
+let toggleLinks = document.querySelector(".menuLinks");
+
+toggleBtn.onclick = function (e) {
+
+    // Stop Propagation
+    e.stopPropagation();
+
+    // Toggle Class "menu-active" On Button
+    this.classList.toggle("menu-active");
+
+    // Toggle Class "open" On Menu Links
+    toggleLinks.classList.toggle("open");
+};
+
+document.addEventListener('click', (e) => {
+
+    if (e.target !== toggleBtn && e.target !== toggleLinks) {
+        
+        if (toggleLinks.classList.contains('open')) {
+            
+            toggleLinks.classList.toggle('open');
+            toggleBtn.classList.toggle('menu-active');
+
+        }
+
+    }
+
+});
+
+toggleLinks.onclick = function (e){
+    e.stopPropagation();
 };

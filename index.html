@@ -98,19 +98,21 @@
     <!-- Start Our Page -->
     <div class="landing-page">
         <div class="overlay"></div>
-        <div class="header-area">
-            <div class="logo">Amjad Shakhshir</div>
-            <div class="links-container">
-                <ul class="menuLinks open">
-                    <li><a href="#" data-section=".about-me" class="active">About</a></li>
-                    <li><a href="#" data-section=".skills">Skills</a></li>
-                    <li><a href="#" data-section=".experience">Experience</a></li>
-                </ul>
-                <button class="toggle-menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
+        <div class="container">
+            <div class="header-area">
+                <div class="logo">Amjad Shakhshir</div>
+                <div class="links-container">
+                    <ul class="menuLinks">
+                        <li><a href="#" data-section=".about-me" class="active">About</a></li>
+                        <li><a href="#" data-section=".skills">Skills</a></li>
+                        <li><a href="#" data-section=".experience">Experience</a></li>
+                    </ul>
+                    <button class="toggle-menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
             </div>
         </div>
         <div class="intro-text">
@@ -125,7 +127,8 @@
     <div class="about-me">
         <div class="info-box">
             <h2>About Me</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae odio ratione quaerat neque eaque, non alias adipisci est, reprehenderit, distinctio itaque laborum. Reiciendis odit possimus repudiandae, vitae velit pariatur nesciunt.</p>
+            <p>Hei, my name is Amjad Shakhshir and you could call me Joni as my Finnish friends used to call me. I'm a Back-End Web Developer and have passion about Test automation Engineering. I'm passionate about swimming and I'm curious about new technologies, creative things and after long week I love to relax in sauna. 
+            </p>
         </div>
         <div class="image-box">
             <img src="imgs/Amjad.jpg" alt="">
@@ -139,9 +142,9 @@
         <div class="container">
             <h2>My Skills</h2>
             <div class="skill-box">
-                <div class="skill-name">HTML</div>
+                <div class="skill-name">Docker</div>
                 <div class="skill-progress">
-                    <span data-progress="90%"></span>
+                    <span data-progress="50%"></span>
                 </div>
             </div>
             <div class="skill-box">
@@ -157,7 +160,7 @@
                 </div>
             </div>
             <div class="skill-box">
-                <div class="skill-name">Python</div>
+                <div class="skill-name">Python/Flask</div>
                 <div class="skill-progress">
                     <span data-progress="70%"></span>
                 </div>
@@ -174,6 +177,12 @@
                     <span data-progress="80%"></span>
                 </div>
             </div>
+            <div class="skill-box">
+                <div class="skill-name">PHP</div>
+                <div class="skill-progress">
+                    <span data-progress="50%"></span>
+                </div>
+            </div>
         </div>
     </div>
     <!-- End My Skills -->
@@ -181,49 +190,69 @@
     <!-- Start Experience -->
     <div class="experience">
         <div class="container">
+            <h2>My Experiences</h2>
             <div class="experience-content">
 
-                <div class="year">2018</div>
+                <div class="year">2019</div>
 
                 <div class="left">
                     <div class="content">
-                        <h3>Testing Heading</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis quo quae eaque molestias? Magnam laboriosam quisquam expedita, iure, quibusdam cum ducimus odit libero voluptatem, numquam eum repellendus modi ut eaque.</p>
+                        <h3>Web Developer - Budapest/Hungary</h3>
+                        <p>I take part in a multidisciplinary team with web tools development and maintenance in fully cloud environment under
+                        agile techniques. We are using daily tools like Docker, Git/GitLab, laravel php, JQuery, mysql/MáriaDB, VS, office365.</p>
                     </div>
                 </div>
                 <div class="clearfix"></div>
                 <div class="right">
                     <div class="content">
-                        <h3>Testing Heading</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis quo quae eaque molestias? Magnam laboriosam
-                            quisquam expedita, iure, quibusdam cum ducimus odit libero voluptatem, numquam eum repellendus modi ut
-                            eaque.</p>
+                        <h3>Web Developer - TEDx Hungary</h3>
+                        <p>Built and deploy Wordpress website with custom development. Establish the live event of TEDx on the website. Implemented CMS, SEO and Google Analytics. Technologies used is PHP, HTML5, CSS3 and MySql.</p>
                     </div>
                 </div>
-
                 <div class="clearfix"></div>
                 <div class="year">2016</div>
+                <div class="clearfix"></div>
+                <div class="year">2013</div>
                 
                 <div class="left">
                     <div class="content">
-                        <h3>Testing Heading</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis quo quae eaque molestias? Magnam laboriosam quisquam expedita, iure, quibusdam cum ducimus odit libero voluptatem, numquam eum repellendus modi ut eaque.</p>
+                        <h3>Wordpress Developer</h3>
+                        <p>Managing Wordpress website with custom development. Content creator and Implemented SEO.</p>
                     </div>
                 </div>
-                <div class="clearfix"></div>
-                <div class="right">
-                    <div class="content">
-                        <h3>Testing Heading</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis quo quae eaque molestias? Magnam laboriosam
-                            quisquam expedita, iure, quibusdam cum ducimus odit libero voluptatem, numquam eum repellendus modi ut
-                            eaque.</p>
-                    </div>
-                </div>
-                
             </div>
         </div>
     </div>
     <!-- End Experience -->
+
+    <!-- Start Contact -->
+    <div class="contact">
+        <div class="container">
+            <h2 class="special-heading">Contact</h2>
+            <p>We are born to create</p>
+            <div class="info">
+                <p class="label">feel free to reach out :</p>
+                <a href="mailto:info@amjadshakhshir.com?subject=Contact" class="link">info@amjadshakhshir.com</a>
+                <div class="social">
+                    Find Me On Social Networks :
+                    <a href="https://github.com/JoniShiro">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    <a href="https://fi.linkedin.com/in/amjad-shakhshir-5a4099130">
+                        <i class="fa-brands fa-linkedin"></i>
+                    </a>
+                    <a href="https://m.facebook.com/amjad.shakhshir.39/">
+                        <i class="fa-brands fa-facebook"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Contact -->
+
+    <!-- Start Footer -->
+    <div class="footer">Hire Me with &hearts;</div>
+    <!-- End Footer -->
     <script src="js/master.js"></script>
     <script src="https://kit.fontawesome.com/a373dee00a.js" crossorigin="anonymous"></script>
 </body>
