@@ -12,6 +12,7 @@ There's some features added to home page to customize the home page like:
 * change the background image.
 
 ##Technologies
+
 *Javascript Mostly (ES6,ES7) and higher.
 *HTML5.
 *CSS3.
