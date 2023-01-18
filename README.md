@@ -11,6 +11,8 @@ The template is showing my CV and could be an example of portfolio website using
 There's some features added to home page to customize the home page like:
 - Change the color.
 - change the background image.
+- Enable/Disable bullets scroll menu.
+- reset options.
 
 ## Technologies
 
