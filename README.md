@@ -14,6 +14,6 @@ There's some features added to home page to customize the home page like:
 
 ## Technologies
 
-- Javascript Mostly (ES6,ES7) and higher.
+- Vanilla Javascript Mostly (ES6,ES7) and higher.
 - HTML5.
 - CSS3.
