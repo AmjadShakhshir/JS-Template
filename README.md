@@ -6,13 +6,13 @@
 
 The template is showing my CV and could be an example of portfolio website using some features to customize the landing page.
 
-##Features
+## Features
 
 There's some features added to home page to customize the home page like:
 - Change the color.
 - change the background image.
 
-##Technologies
+## Technologies
 
 - Javascript Mostly (ES6,ES7) and higher.
 - HTML5.
