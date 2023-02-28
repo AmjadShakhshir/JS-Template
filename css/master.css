@@ -372,11 +372,11 @@ body{
     .header-area .menuLinks.open {
         background-color: #fff;
         padding: 10px;
-        display: block;
+        display: flex;
+        flex-direction: column;
         position: absolute;
-        left: 0;
-        top: 50px;
-        width: 100%;
+        transform: translate(-150px,43px);
+        width: 90%;
         border-radius: 4px;
     }
     .header-area .menuLinks.open li {
@@ -421,7 +421,8 @@ body{
 .about-me .info-box p{    
     line-height: 1.8;
     color: #777;
-    margin: 0;
+    margin: 0 0.5rem 0 1.5rem;
+    text-align: justify;
 }
 .about-me .image-box{    
     flex: 1;
@@ -670,7 +671,7 @@ body{
     font-size: 30px;
     font-weight: bold;
     text-decoration: none;
-    width: 70%;
+    width: 100%;
     color:var(--main-color);
 }
 .contact .info .social {
@@ -679,9 +680,56 @@ body{
     margin-top: 20px;
     font-size: 16px;
 }
+.contact .info .social a {
+    flex-direction: row;
+}
 .contact .info .social i {
     margin-left: 10px;
     color: var(--main-color);
+}
+@media (max-width:767px) {
+    .contact .container {
+        width: 110%;
+        padding: 1.5rem;
+    }
+    .contact .info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .contact .info .label {
+        font-size: 1rem;
+    }
+
+    .contact .info .link {
+        font-size: .875rem;
+    }
+}
+@media (max-width:1192px) {
+    .contact .info {
+        margin: 0;
+    }
+
+    .contact .info .label {
+        font-size: 1.2rem;
+    }
+
+    .contact .info .link {
+        font-size: 1rem;
+    }
+
+    .contact .info .social {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        font-size: .875rem;
+    }
+
+    .contact .info .social i {
+        margin-left: 10px;
+        color: var(--main-color);
+    }
 }
 /* End Contact */
 /* Start Footer */
@@ -711,42 +759,6 @@ body{
 @media (min-width: 1200px) { /* Large Screens */
     .container {
         max-width: 1140px;
-    }
-}
-@media (max-width:1050px) {
-    .contact .info {
-        margin: 0;
-    }
-    .contact .info .label {
-        font-size: 19px;
-    }
-
-    .contact .info .link {
-        font-size: 16px;
-    }
-
-    .contact .info .social {
-        display: flex;
-        justify-content: center;
-        margin-top: 20px;
-        font-size: 14px;
-    }
-
-    .contact .info .social i {
-        margin-left: 10px;
-        color: var(--main-color);
-    }
-}
-@media (max-width:690px) {
-    .contact .container {
-            width: 70%;
-        }
-    .contact .info .label {
-        font-size: 17px;
-    }
-
-    .contact .info .link {
-        font-size: 14px;
     }
 }
 
