@@ -149,9 +149,9 @@ body{
 .settings-box .backgrounds-list li:hover span {
     /*CSS for enlarged image on hover*/
     visibility: visible;
-    opacity: 1;
+    opacity: .8;
     left: 65px;
-    top: 9em;
+    top: 3em;
     /*position where enlarged image should offset horizontally */
 }
 .settings-box .bullets-option .yes,
@@ -594,6 +594,8 @@ body{
     color: #666;
     margin: 0;
     line-height: 1.6;
+    text-align: justify;
+    word-spacing: normal;
 }
 .clearfix{
     clear: both;
