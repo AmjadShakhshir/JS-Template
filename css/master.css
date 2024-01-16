@@ -629,6 +629,89 @@ body{
     }
 }
 /* End Experience */
+/* Start My Project */
+.projects {
+    padding: 50px 0;
+    background-color: #f6f6f6;
+}
+.projects h2,
+.projects-content
+.project
+.project-info
+.project-name {
+    font-weight: bold;
+    color: var(--main-color);
+    text-align: center;
+}
+.projects h2 {
+    font-size: 30px;
+    margin-bottom: 50px;
+}
+.projects-content {
+    display: flex;
+    flex-wrap: wrap;
+}
+.projects-content .project {
+    width: calc(33.3333333333% - 30px);
+    margin: 15px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 40px;
+}
+@media (max-width: 767px) {
+    .projects-content .project {
+        width: 100%;
+    }
+}
+.projects-content .project .project-img,
+.projects-content .project .project-info {
+    width: 100%;
+    transition: .3s;
+}
+.projects-content .project .project-img {
+    height: 200px;
+    overflow: hidden;
+}
+.projects-content .project .project-img img {
+    width: 100%;
+    height: 100%;
+}
+.projects-content .project .project-img:hover img {
+    transform: scale(1.1);
+}
+.projects-content .project .project-info {
+    background-color: #fff;
+    padding: 15px;
+    position: absolute;
+    left: 0;
+    bottom: -100%;
+}
+.projects-content .project:hover .project-info {
+    bottom: 0;
+}
+.projects-content .project .project-info .project-description {
+    color: #666;
+    margin: 0;
+    line-height: 1.6;
+    padding-bottom: 10px;
+    text-align: justify;
+    word-spacing: normal;
+}
+.projects-content .project .project-info .project-skills {
+    font-size: 1em;
+    padding: 0 20px;
+}
+.projects-content .project .project-info .project-link {
+    color: var(--main-color);
+    font-weight: bold;
+    text-decoration: none;
+    display: block;
+    margin-top: 10px;
+}
+.projects-content .project .project-info .project-link:hover {
+    text-decoration: underline;
+}
+/* End My Project */
 /* Start Contact */
 .contact {
     padding-top: 60px;
