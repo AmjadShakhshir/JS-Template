@@ -701,12 +701,13 @@ body{
     font-size: 1em;
     padding: 0 20px;
 }
-.projects-content .project .project-info .project-link {
-    color: var(--main-color);
-    font-weight: bold;
-    text-decoration: none;
-    display: block;
-    margin-top: 10px;
+.projects-content .project .project-link {
+    display: inline-block;
+    margin: 5px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    background-color: var(--main-color);
+    color: #fff;
 }
 .projects-content .project .project-info .project-link:hover {
     text-decoration: underline;
