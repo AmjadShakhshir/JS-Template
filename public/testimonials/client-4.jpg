@@ -1,0 +1,13 @@
+<svg width="150" height="150" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="client4Gradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0891b2;stop-opacity:1" />
+    </radialGradient>
+  </defs>
+  <circle cx="75" cy="75" r="70" fill="url(#client4Gradient)" stroke="#fff" stroke-width="3"/>
+  <circle cx="60" cy="60" r="8" fill="white"/>
+  <circle cx="90" cy="60" r="8" fill="white"/>
+  <path d="M 50 95 Q 75 110 100 95" stroke="white" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <text x="75" y="135" text-anchor="middle" fill="white" font-size="12" font-family="Arial">DT</text>
+</svg>
