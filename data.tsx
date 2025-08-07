@@ -52,7 +52,7 @@ export const socialNetworks = [
     id: 2,
     name: "GitHub",
     logo: <Github size={30} strokeWidth={1} />,
-    src: "https://github.com/amajdshakhshir",
+    src: "https://github.com/AmjadShakhshir",
   },
   {
     id: 3,
@@ -449,7 +449,7 @@ export const dataPortfolio = [
     id: 5,
     title: "Portfolio Website",
     image: "/portfolio/project-5.svg",
-    urlGithub: "https://github.com/yourusername/portfolio",
+    urlGithub: "https://github.com/AmjadShakhshir/JS-Template",
     urlDemo: "https://your-portfolio.com",
     technologies: ["Next.js", "Tailwind CSS", "Framer Motion"],
     description: "Modern portfolio website with smooth animations and responsive design showcasing projects and skills.",
