@@ -7,10 +7,11 @@ import TransitionPage from "@/components/transition-page";
 import { useToast } from "@/components/toast-provider";
 import { Mail, Phone, MapPin, Send, Loader2 } from "lucide-react";
 import { useState } from "react";
+import { submitContactForm, type ContactFormData } from "@/lib/services/contact";
 
 const ContactPage = () => {
   const { showSuccess, showError } = useToast();
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<ContactFormData>({
     name: '',
     email: '',
     message: ''
@@ -22,18 +23,10 @@ const ContactPage = () => {
     setIsSubmitting(true);
     
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+      const result = await submitContactForm(formData);
 
-      const data = await response.json();
-
-      if (data.success) {
-        showSuccess('Message sent successfully!', data.message);
+      if (result.success) {
+        showSuccess('Message sent successfully!', result.message || 'Thank you for your message!');
         // Reset form
         setFormData({
           name: '',
@@ -41,7 +34,7 @@ const ContactPage = () => {
           message: ''
         });
       } else {
-        showError('Failed to send message', data.error || 'Please try again later.');
+        showError('Failed to send message', result.error || 'Please try again later.');
       }
     } catch (error) {
       showError('Network error', 'Please check your connection and try again.');

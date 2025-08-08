@@ -4,20 +4,17 @@ import { useUser } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
 import { Check, X, User } from "lucide-react";
 import Image from "next/image";
+import { checkAdminClientSide, type AdminCheckResult } from "@/lib/services/admin";
 
 export default function AuthStatus() {
   const { user, isLoaded } = useUser();
-  const [adminStatus, setAdminStatus] = useState<{
-    isAdmin: boolean;
-    message: string;
-  } | null>(null);
+  const [adminStatus, setAdminStatus] = useState<AdminCheckResult | null>(null);
 
   useEffect(() => {
     if (isLoaded && user) {
-      fetch("/api/admin/check")
-        .then((res) => res.json())
-        .then((data) => setAdminStatus(data))
-        .catch(() => setAdminStatus({ isAdmin: false, message: "Error checking admin status" }));
+      // Use client-side admin check for static deployments
+      const status = checkAdminClientSide(user);
+      setAdminStatus(status);
     }
   }, [isLoaded, user]);
 
@@ -45,6 +42,8 @@ export default function AuthStatus() {
         <Image
           src={user.imageUrl}
           alt={user.firstName || "User"}
+          width={24}
+          height={24}
           className="w-6 h-6 rounded-full"
         />
         <span className="text-sm text-gray-700">

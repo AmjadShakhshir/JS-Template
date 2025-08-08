@@ -11,6 +11,8 @@
   "scripts": {
     "dev": "next dev --hostname localhost --port 3000",
     "build": "next build",
+    "build:static": "DEPLOYMENT_TARGET=static ./scripts/build.sh",
+    "build:server": "DEPLOYMENT_TARGET=server next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -21,7 +23,7 @@
     "@tsparticles/slim": "^3.8.1",
     "framer-motion": "^11.18.2",
     "lottie-react": "^2.4.1",
-    "lucide-react": "^0.294.0",
+    "lucide-react": "^0.537.0",
     "next": "15.3.0",
     "react": "^19.0.0",
     "react-countup": "^6.5.0",
