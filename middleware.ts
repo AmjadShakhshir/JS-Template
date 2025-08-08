@@ -19,7 +19,7 @@ export default async function middleware(req: NextRequest) {
   }
 
   if (isProtectedRoute(pathname)) {
-    const { userId } = await auth();
+    const { userId } = await auth(req);
     if (!userId) {
       // Redirect to sign-in if not authenticated
       const signInUrl = new URL('/sign-in', req.url);
