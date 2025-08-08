@@ -1,21 +1,24 @@
-import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 
-const isProtectedRoute = createRouteMatcher([
-  '/blog/admin(.*)',
-]);
+const isProtectedRoute = (pathname: string): boolean => {
+  return pathname.startsWith('/blog/admin');
+};
 
-const isWebhookRoute = createRouteMatcher([
-  '/api/webhooks(.*)',
-]);
+const isWebhookRoute = (pathname: string): boolean => {
+  return pathname.startsWith('/api/webhooks');
+};
 
-export default clerkMiddleware(async (auth, req) => {
+export default async function middleware(req: NextRequest) {
+  const { pathname } = req.nextUrl;
+
   // Allow webhooks to pass through without auth
-  if (isWebhookRoute(req)) {
+  if (isWebhookRoute(pathname)) {
     return NextResponse.next();
   }
 
-  if (isProtectedRoute(req)) {
+  if (isProtectedRoute(pathname)) {
     const { userId } = await auth();
     if (!userId) {
       // Redirect to sign-in if not authenticated
@@ -26,7 +29,7 @@ export default clerkMiddleware(async (auth, req) => {
   }
   
   return NextResponse.next();
-});
+}
 
 export const config = {
   matcher: [
