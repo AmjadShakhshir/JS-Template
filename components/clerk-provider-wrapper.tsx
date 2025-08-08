@@ -1,25 +1,23 @@
 "use client"
 
 import { ClerkProvider } from "@clerk/nextjs";
-import { ReactNode } from "react";
+import { type ReactNode } from "react";
 
 interface ClerkProviderWrapperProps {
   children: ReactNode;
 }
 
 export default function ClerkProviderWrapper({ children }: ClerkProviderWrapperProps) {
-  // Only initialize Clerk if we have valid keys and we're not in build time
-  const hasValidKeys = 
-    process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY && 
-    process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY !== 'pk_test_your_publishable_key_here';
+  const publishableKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
 
-  if (!hasValidKeys) {
-    // During build time or when keys are not set, just return children without ClerkProvider
+  if (!publishableKey) {
+    console.warn('NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY is not set');
+    // Return children without Clerk provider for static builds without keys
     return <>{children}</>;
   }
 
   return (
-    <ClerkProvider>
+    <ClerkProvider publishableKey={publishableKey}>
       {children}
     </ClerkProvider>
   );

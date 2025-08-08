@@ -1,6 +1,18 @@
 /** @type {import('next').NextConfig} */
+const isStaticExport = process.env.DEPLOYMENT_TARGET === 'static';
+
 const nextConfig = {
+  // Conditional static export
+  ...(isStaticExport && {
+    output: 'export',
+    trailingSlash: true,
+    skipTrailingSlashRedirect: true,
+  }),
+  
+  // Disable server features for static export
   images: {
+    // Disable image optimization for static export
+    unoptimized: isStaticExport,
     remotePatterns: [
       {
         protocol: 'https',
@@ -16,6 +28,11 @@ const nextConfig = {
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
+  
+  // Performance optimizations
+  reactStrictMode: true,
+  poweredByHeader: false,
+  compress: true,
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
@@ -23,44 +40,14 @@ const nextConfig = {
     optimizePackageImports: ['framer-motion', 'lucide-react', '@tsparticles/react'],
     webVitalsAttribution: ['CLS', 'LCP'],
   },
-  // Performance optimizations
-  reactStrictMode: true,
-  poweredByHeader: false,
-  compress: true,
   
-  // Headers for better caching
-  async headers() {
-    return [
-      {
-        source: '/(.*)',
-        headers: [
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff',
-          },
-          {
-            key: 'X-Frame-Options',
-            value: 'DENY',
-          },
-          {
-            key: 'X-XSS-Protection',
-            value: '1; mode=block',
-          },
-        ],
-      },
-      {
-        source: '/api/(.*)',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=3600, s-maxage=3600',
-          },
-        ],
-      },
-    ];
+  // Environment variables
+  env: {
+    NEXT_PUBLIC_DEPLOYMENT_TARGET: process.env.DEPLOYMENT_TARGET || 'server',
+    NEXT_PUBLIC_IS_STATIC_EXPORT: isStaticExport ? 'true' : 'false',
   },
   
-  // Ensure proper WebSocket handling for HMR
+  // Ensure proper WebSocket handling for HMR and optimize bundle
   webpack: (config, { dev, isServer }) => {
     if (dev) {
       config.watchOptions = {

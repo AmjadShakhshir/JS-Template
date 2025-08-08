@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
-import { ClerkProvider } from "@clerk/nextjs";
 import Script from "next/script";
 
 import "./globals.css";
@@ -10,6 +9,7 @@ import 'swiper/css/scrollbar';
 
 import ConditionalLayout from "@/components/conditional-layout";
 import { ToastProvider } from "@/components/toast-provider";
+import ClerkProviderWrapper from "@/components/clerk-provider-wrapper";
 
 const inter = Inter({ 
   subsets: ["latin"],
@@ -41,7 +41,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
+    <ClerkProviderWrapper>
       <html lang="en">
         <head>
           <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -76,6 +76,6 @@ export default function RootLayout({
           />
         </body>
       </html>
-    </ClerkProvider>
+    </ClerkProviderWrapper>
   );
 }

@@ -9,7 +9,14 @@ const isWebhookRoute = createRouteMatcher([
   '/api/webhooks(.*)',
 ]);
 
+const isStaticExport = process.env.NEXT_PUBLIC_IS_STATIC_EXPORT === 'true';
+
 export default clerkMiddleware(async (auth, req) => {
+  // Skip middleware for static exports
+  if (isStaticExport) {
+    return NextResponse.next();
+  }
+
   // Allow webhooks to pass through without auth
   if (isWebhookRoute(req)) {
     return NextResponse.next();
@@ -32,7 +39,7 @@ export const config = {
   matcher: [
     // Skip Next.js internals and all static files, unless found in search params
     '/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
-    // Always run for API routes
+    // Always run for API routes (only when not static export)
     '/(api|trpc)(.*)',
   ],
 };
