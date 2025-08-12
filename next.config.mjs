@@ -1,6 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // GitHub Pages static export configuration
+  output: 'export',
+  trailingSlash: true,
+  
   images: {
+    unoptimized: true, // Required for static export
     remotePatterns: [
       {
         protocol: 'https',
@@ -27,52 +32,6 @@ const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   compress: true,
-  
-  // Headers for better caching
-  async headers() {
-    return [
-      {
-        source: '/(.*)',
-        headers: [
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff',
-          },
-          {
-            key: 'X-Frame-Options',
-            value: 'DENY',
-          },
-          {
-            key: 'X-XSS-Protection',
-            value: '1; mode=block',
-          },
-        ],
-      },
-      {
-        source: '/api/(.*)',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=3600, s-maxage=3600',
-          },
-          {
-            key: 'Access-Control-Allow-Origin',
-            value: process.env.NODE_ENV === 'production' 
-              ? 'https://*.vercel.app' 
-              : 'http://localhost:3000',
-          },
-          {
-            key: 'Access-Control-Allow-Methods',
-            value: 'GET, POST, OPTIONS',
-          },
-          {
-            key: 'Access-Control-Allow-Headers',
-            value: 'Content-Type, Authorization, X-Requested-With',
-          },
-        ],
-      },
-    ];
-  },
   
   // Ensure proper WebSocket handling for HMR
   webpack: (config, { dev, isServer }) => {
