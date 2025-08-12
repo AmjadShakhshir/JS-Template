@@ -1,10 +1,12 @@
 # Edge Runtime Deployment Fix
 
-## Issue Resolved
-Fixed the Edge Runtime deployment error: "The Edge Function 'middleware' is referencing unsupported modules"
+## Issues Resolved
+1. **Primary:** Fixed the Edge Runtime deployment error: "The Edge Function 'middleware' is referencing unsupported modules"
+2. **Secondary:** Fixed Vercel deployment error: "Function Runtimes must have a valid version, for example `now-php@1.0.0`"
 
 ## Root Cause
-The error occurred during deployment when platforms (like Vercel) automatically detected the middleware and tried to run it in Edge Runtime, but Clerk's internal modules were trying to access Node.js-specific APIs that aren't available in Edge Runtime.
+1. **Edge Runtime Error:** The error occurred during deployment when platforms (like Vercel) automatically detected the middleware and tried to run it in Edge Runtime, but Clerk's internal modules were trying to access Node.js-specific APIs that aren't available in Edge Runtime.
+2. **Function Runtime Error:** Vercel configuration was incorrectly trying to specify middleware runtime, which should be handled automatically by Next.js framework detection.
 
 ## Solution Implemented
 
@@ -19,12 +21,13 @@ The error occurred during deployment when platforms (like Vercel) automatically 
   - `#crypto`: false
   - `#safe-node-apis`: false
 
-### 3. Added Vercel Configuration (`vercel.json`)
-- Explicitly configured middleware to run in Edge Runtime
-- Added secure CORS headers for API routes (limited to Vercel domains and localhost, not open to all origins)
+### 3. Fixed Vercel Configuration (`vercel.json`)
+- Removed explicit middleware runtime configuration (Vercel handles this automatically)
+- Added secure CORS headers for API routes (limited to Vercel domains and custom domain)
 - Set deployment region preferences
 - Restricted HTTP methods to GET, POST, OPTIONS only
 - Added credentials support for authenticated requests
+- **Fixed:** Removed invalid function runtime configuration that caused deployment error
 
 ### 4. Enhanced Next.js Configuration Security
 - Added environment-aware CORS configuration in `next.config.mjs`
