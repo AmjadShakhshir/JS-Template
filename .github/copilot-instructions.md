@@ -73,12 +73,6 @@ npm run lint             # ESLint check
 
 ### Required Variables
 ```bash
-# Clerk Authentication
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_*
-CLERK_SECRET_KEY=sk_*
-CLERK_WEBHOOK_SECRET=whsec_*
-ADMIN_EMAIL=admin@email.com
-
 # Supabase (optional - graceful fallback)
 NEXT_PUBLIC_SUPABASE_URL=https://*.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJ*
@@ -96,7 +90,7 @@ The app gracefully degrades without Supabase credentials - use `isDatabaseAvaila
 
 ### Image Optimization
 - **Next.js Image**: Used everywhere with error fallbacks
-- **External domains**: Configure in `next.config.mjs` (currently: Unsplash, Clerk)
+- **External domains**: Configure in `next.config.mjs` (currently: Unsplash)
 - **Loading states**: Skeleton components in `components/skeleton-cards/`
 
 ### Error Handling

@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
-import { ClerkProvider } from "@clerk/nextjs";
 import Script from "next/script";
 
 import "./globals.css";
@@ -40,10 +39,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const publishableKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
-  
-  // Create the content without ClerkProvider if key is missing during build
-  const content = (
+  return (
     <html lang="en">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -79,16 +75,4 @@ export default function RootLayout({
       </body>
     </html>
   );
-
-  // Only wrap with ClerkProvider if we have a valid key
-  if (publishableKey && publishableKey !== 'pk_test_your_publishable_key_here') {
-    return (
-      <ClerkProvider publishableKey={publishableKey}>
-        {content}
-      </ClerkProvider>
-    );
-  }
-
-  // Return content without ClerkProvider during build or when key is missing
-  return content;
 }

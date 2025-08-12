@@ -7,10 +7,8 @@ import Header from "@/components/header";
 export default function ConditionalLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   
-  // Hide navbar and header on admin routes and auth pages
-  const hideLayout = pathname.startsWith('/blog/admin') || 
-                     pathname.startsWith('/sign-in') || 
-                     pathname.startsWith('/sign-up');
+  // Hide navbar and header on specific routes if needed
+  const hideLayout = pathname.startsWith('/blog/admin');
 
   if (hideLayout) {
     return <>{children}</>;

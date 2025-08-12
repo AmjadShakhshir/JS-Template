@@ -1,21 +1,11 @@
-import { redirect } from "next/navigation";
-import { checkIsAdmin } from "@/lib/auth";
-import { UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import { ArrowLeft, Shield } from "lucide-react";
-import AuthStatus from "@/components/auth-status";
 
 export default async function AdminLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const isAdmin = await checkIsAdmin();
-
-  if (!isAdmin) {
-    redirect("/sign-in?redirect_url=/blog/admin");
-  }
-
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Admin Header */}
@@ -35,17 +25,6 @@ export default async function AdminLayout({
                 <Shield className="w-5 h-5 text-blue-600" />
                 <h1 className="text-lg font-semibold text-gray-900">Blog Admin Panel</h1>
               </div>
-            </div>
-            <div className="flex items-center space-x-4">
-              <AuthStatus />
-              <UserButton 
-                appearance={{
-                  elements: {
-                    avatarBox: "w-8 h-8"
-                  }
-                }}
-                afterSignOutUrl="/blog"
-              />
             </div>
           </div>
         </div>

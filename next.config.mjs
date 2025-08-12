@@ -10,10 +10,6 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'randomuser.me',
       },
-      {
-        protocol: 'https',
-        hostname: 'img.clerk.com',
-      },
     ],
     formats: ['image/webp', 'image/avif'],
     minimumCacheTTL: 60,
@@ -95,15 +91,10 @@ const nextConfig = {
       };
     }
     
-    // Edge Runtime compatibility for Clerk middleware
-    if (!isServer) {
-      config.resolve.alias = {
-        ...config.resolve.alias,
-        '@clerk/shared/buildAccountsBaseUrl': false,
-        '#crypto': false,
-        '#safe-node-apis': false,
-      };
-    }
+    // Edge Runtime compatibility
+    config.resolve.alias = {
+      ...config.resolve.alias,
+    };
     
     return config;
   },
