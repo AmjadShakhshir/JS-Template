@@ -40,42 +40,55 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <ClerkProvider>
-      <html lang="en">
-        <head>
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-          <link rel="dns-prefetch" href="https://images.unsplash.com" />
-        </head>
-        <body className={inter.className}>
-          <ToastProvider>
-            <ConditionalLayout>
-              {children}
-            </ConditionalLayout>
-          </ToastProvider>
-          
-          {/* Performance monitoring script */}
-          <Script
-            id="performance-observer"
-            strategy="afterInteractive"
-            dangerouslySetInnerHTML={{
-              __html: `
-                if ('PerformanceObserver' in window) {
-                  const observer = new PerformanceObserver((list) => {
-                    list.getEntries().forEach((entry) => {
-                      if (entry.entryType === 'navigation') {
-                        console.log('Page Load Time:', entry.loadEventEnd - entry.loadEventStart);
-                      }
-                    });
+  const publishableKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
+  
+  // Create the content without ClerkProvider if key is missing during build
+  const content = (
+    <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://images.unsplash.com" />
+      </head>
+      <body className={inter.className}>
+        <ToastProvider>
+          <ConditionalLayout>
+            {children}
+          </ConditionalLayout>
+        </ToastProvider>
+        
+        {/* Performance monitoring script */}
+        <Script
+          id="performance-observer"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              if ('PerformanceObserver' in window) {
+                const observer = new PerformanceObserver((list) => {
+                  list.getEntries().forEach((entry) => {
+                    if (entry.entryType === 'navigation') {
+                      console.log('Page Load Time:', entry.loadEventEnd - entry.loadEventStart);
+                    }
                   });
-                  observer.observe({ entryTypes: ['navigation'] });
-                }
-              `,
-            }}
-          />
-        </body>
-      </html>
-    </ClerkProvider>
+                });
+                observer.observe({ entryTypes: ['navigation'] });
+              }
+            `,
+          }}
+        />
+      </body>
+    </html>
   );
+
+  // Only wrap with ClerkProvider if we have a valid key
+  if (publishableKey && publishableKey !== 'pk_test_your_publishable_key_here') {
+    return (
+      <ClerkProvider publishableKey={publishableKey}>
+        {content}
+      </ClerkProvider>
+    );
+  }
+
+  // Return content without ClerkProvider during build or when key is missing
+  return content;
 }

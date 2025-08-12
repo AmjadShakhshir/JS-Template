@@ -6,14 +6,41 @@ import { Check, X, User } from "lucide-react";
 import Image from "next/image";
 
 export default function AuthStatus() {
-  const { user, isLoaded } = useUser();
   const [adminStatus, setAdminStatus] = useState<{
     isAdmin: boolean;
     message: string;
   } | null>(null);
+  const [clerkError, setClerkError] = useState(false);
 
-  // Consistent sizing for avatar
-  const AVATAR_SIZE = 24;
+  // Check if Clerk is properly configured
+  useEffect(() => {
+    const publishableKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
+    if (!publishableKey) {
+      setClerkError(true);
+    }
+  }, []);
+
+  // If Clerk is not configured, show a fallback
+  if (clerkError) {
+    return (
+      <div className="flex items-center space-x-2 text-orange-600">
+        <X className="w-4 h-4" />
+        <span>Auth not configured</span>
+      </div>
+    );
+  }
+
+  return <AuthStatusWithClerk adminStatus={adminStatus} setAdminStatus={setAdminStatus} />;
+}
+
+function AuthStatusWithClerk({ 
+  adminStatus, 
+  setAdminStatus 
+}: {
+  adminStatus: { isAdmin: boolean; message: string; } | null;
+  setAdminStatus: (status: { isAdmin: boolean; message: string; } | null) => void;
+}) {
+  const { user, isLoaded } = useUser();
 
   useEffect(() => {
     if (isLoaded && user) {
@@ -22,7 +49,7 @@ export default function AuthStatus() {
         .then((data) => setAdminStatus(data))
         .catch(() => setAdminStatus({ isAdmin: false, message: "Error checking admin status" }));
     }
-  }, [isLoaded, user]);
+  }, [isLoaded, user, setAdminStatus]);
 
   if (!isLoaded) {
     return (
@@ -48,10 +75,7 @@ export default function AuthStatus() {
         <Image
           src={user.imageUrl}
           alt={user.firstName || "User"}
-          width={AVATAR_SIZE}
-          height={AVATAR_SIZE}
-          className="rounded-full"
-          style={{ width: AVATAR_SIZE, height: AVATAR_SIZE }}
+          className="w-6 h-6 rounded-full"
         />
         <span className="text-sm text-gray-700">
           {user.firstName} {user.lastName}
