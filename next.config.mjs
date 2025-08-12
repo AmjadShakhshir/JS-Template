@@ -59,6 +59,20 @@ const nextConfig = {
             key: 'Cache-Control',
             value: 'public, max-age=3600, s-maxage=3600',
           },
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: process.env.NODE_ENV === 'production' 
+              ? 'https://*.vercel.app' 
+              : 'http://localhost:3000',
+          },
+          {
+            key: 'Access-Control-Allow-Methods',
+            value: 'GET, POST, OPTIONS',
+          },
+          {
+            key: 'Access-Control-Allow-Headers',
+            value: 'Content-Type, Authorization, X-Requested-With',
+          },
         ],
       },
     ];
@@ -78,6 +92,16 @@ const nextConfig = {
       config.resolve.fallback = {
         ...config.resolve.fallback,
         fs: false,
+      };
+    }
+    
+    // Edge Runtime compatibility for Clerk middleware
+    if (!isServer) {
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        '@clerk/shared/buildAccountsBaseUrl': false,
+        '#crypto': false,
+        '#safe-node-apis': false,
       };
     }
     

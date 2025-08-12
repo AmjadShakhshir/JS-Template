@@ -1,4 +1,5 @@
 import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server'
+import { NextResponse } from 'next/server'
 
 const isProtectedRoute = createRouteMatcher(['/blog/admin(.*)'])
 const isWebhookRoute = createRouteMatcher(['/api/webhooks(.*)'])
@@ -6,12 +7,15 @@ const isWebhookRoute = createRouteMatcher(['/api/webhooks(.*)'])
 export default clerkMiddleware(async (auth, req) => {
   // Allow webhooks to pass through without auth
   if (isWebhookRoute(req)) {
-    return
+    return NextResponse.next()
   }
 
+  // Protect admin routes
   if (isProtectedRoute(req)) {
     await auth.protect()
   }
+
+  return NextResponse.next()
 })
 
 export const config = {
@@ -21,4 +25,4 @@ export const config = {
     // Always run for API routes
     '/(api|trpc)(.*)',
   ],
-};
+}
