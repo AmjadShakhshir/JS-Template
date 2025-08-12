@@ -7,7 +7,6 @@ import CountUp from "react-countup";
 import TransitionPage from "@/components/transition-page";
 import Image from "next/image";
 import { useState } from "react";
-import { User } from "lucide-react";
 
 const AboutMePage = () => {
   const [imageError, setImageError] = useState(false);
@@ -62,7 +61,7 @@ const AboutMePage = () => {
             </h1>
             
             <p className="mt-6 text-lg text-gray-300 leading-relaxed">
-              I'm an outcome‑focused full‑stack developer with {new Date().getFullYear() - 2022}+ years building modern web applications using React, Node.js, and cloud technologies.  I embed AI‑powered features—like recommendation engines, workflow automation, and chat assistants—directly into applications to boost business value and enhance user experiences. I write clean, maintainable code and collaborate seamlessly with cross‑functional teams.
+              I&apos;m an outcome‑focused full‑stack developer with {new Date().getFullYear() - 2022}+ years building modern web applications using React, Node.js, and cloud technologies.  I embed AI‑powered features—like recommendation engines, workflow automation, and chat assistants—directly into applications to boost business value and enhance user experiences. I write clean, maintainable code and collaborate seamlessly with cross‑functional teams.
             </p>
 
             <p className="mt-4 text-lg text-gray-300 leading-relaxed">

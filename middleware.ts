@@ -1,35 +1,18 @@
-import { auth } from "@clerk/nextjs/server";
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server'
 
-const isProtectedRoute = (pathname: string): boolean => {
-  return pathname.startsWith('/blog/admin');
-};
+const isProtectedRoute = createRouteMatcher(['/blog/admin(.*)'])
+const isWebhookRoute = createRouteMatcher(['/api/webhooks(.*)'])
 
-const isWebhookRoute = (pathname: string): boolean => {
-  return pathname.startsWith('/api/webhooks');
-};
-
-export default async function middleware(req: NextRequest) {
-  const { pathname } = req.nextUrl;
-
+export default clerkMiddleware(async (auth, req) => {
   // Allow webhooks to pass through without auth
-  if (isWebhookRoute(pathname)) {
-    return NextResponse.next();
+  if (isWebhookRoute(req)) {
+    return
   }
 
-  if (isProtectedRoute(pathname)) {
-    const { userId } = await auth();
-    if (!userId) {
-      // Redirect to sign-in if not authenticated
-      const signInUrl = new URL('/sign-in', req.url);
-      signInUrl.searchParams.set('redirect_url', req.url);
-      return NextResponse.redirect(signInUrl);
-    }
+  if (isProtectedRoute(req)) {
+    await auth.protect()
   }
-  
-  return NextResponse.next();
-}
+})
 
 export const config = {
   matcher: [
@@ -38,4 +21,4 @@ export const config = {
     // Always run for API routes
     '/(api|trpc)(.*)',
   ],
-};
+}

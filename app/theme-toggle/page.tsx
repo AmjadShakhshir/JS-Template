@@ -225,7 +225,7 @@ const ThemeTogglePage = () => {
                   </div>
                   <div>
                     <h4 className="font-medium text-white">System Integration</h4>
-                    <p className="text-gray-400 text-sm">Respects user's system preference</p>
+                    <p className="text-gray-400 text-sm">Respects user&apos;s system preference</p>
                   </div>
                 </div>
                 

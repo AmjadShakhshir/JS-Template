@@ -12,6 +12,9 @@ export default function AuthStatus() {
     message: string;
   } | null>(null);
 
+  // Consistent sizing for avatar
+  const AVATAR_SIZE = 24;
+
   useEffect(() => {
     if (isLoaded && user) {
       fetch("/api/admin/check")
@@ -45,7 +48,10 @@ export default function AuthStatus() {
         <Image
           src={user.imageUrl}
           alt={user.firstName || "User"}
-          className="w-6 h-6 rounded-full"
+          width={AVATAR_SIZE}
+          height={AVATAR_SIZE}
+          className="rounded-full"
+          style={{ width: AVATAR_SIZE, height: AVATAR_SIZE }}
         />
         <span className="text-sm text-gray-700">
           {user.firstName} {user.lastName}

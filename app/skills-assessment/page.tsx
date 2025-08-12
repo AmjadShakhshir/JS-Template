@@ -1,11 +1,10 @@
 "use client"
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { 
   CheckCircle, 
   XCircle, 
-  Trophy, 
   Brain, 
   Clock,
   RotateCcw,
@@ -109,7 +108,7 @@ const SkillsAssessmentPage = () => {
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [userAnswers, setUserAnswers] = useState<number[]>([]);
   const [showResult, setShowResult] = useState(false);
-  const [showExplanation, setShowExplanation] = useState(false);
+  const [, setShowExplanation] = useState(false);
   const [quizStarted, setQuizStarted] = useState(false);
   const [timeRemaining, setTimeRemaining] = useState(300); // 5 minutes
 

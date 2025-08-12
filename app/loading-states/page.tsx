@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { RefreshCw, Zap, Eye } from "lucide-react";
 import TransitionPage from "@/components/transition-page";

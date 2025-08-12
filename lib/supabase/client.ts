@@ -2,41 +2,42 @@
 import { createClient } from '@supabase/supabase-js'
 import type { Database } from './types'
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
-const supabaseKey = process.env.SUPABASE_API_KEY!
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+const adminEmail = process.env.ADMIN_EMAIL
 
-if (!supabaseUrl || !supabaseKey) {
-  throw new Error('Missing Supabase environment variables')
+if (!supabaseUrl || !supabaseAnonKey) {
+  console.warn('Missing Supabase environment variables - database operations will fall back to localStorage')
 }
 
-export const supabase = createClient<Database>(supabaseUrl, supabaseKey, {
-  global: {
-    headers: {
-      'X-Admin-Email': process.env.ADMIN_EMAIL || 'amjaddevelopment8@gmail.com'
-    }
-  }
-})
-
-export const supabaseAdmin = createClient<Database>(supabaseUrl, supabaseKey, {
-  auth: {
-    autoRefreshToken: false,
-    persistSession: false
-  },
-  global: {
-    headers: {
-      'X-Admin-Email': process.env.ADMIN_EMAIL || 'amjaddevelopment8@gmail.com'
-    }
-  }
-})
+// Only create client if environment variables are available
+export const supabase = supabaseUrl && supabaseAnonKey 
+  ? createClient<Database>(supabaseUrl, supabaseAnonKey, {
+      global: {
+        headers: adminEmail ? {
+          'X-Admin-Email': adminEmail
+        } : {}
+      }
+    })
+  : null
 
 // Function to set admin email for RLS policies
 export const setAdminEmailForRLS = async (email?: string) => {
-  const adminEmail = email || process.env.ADMIN_EMAIL || 'amjaddevelopment8@gmail.com'
+  if (!supabase) {
+    console.warn('Supabase client not available - skipping RLS configuration')
+    return
+  }
+  
+  const targetEmail = email || adminEmail
+  if (!targetEmail) {
+    console.warn('No admin email available for RLS configuration')
+    return
+  }
   
   try {
     await supabase.rpc('set_config', {
       setting_name: 'app.admin_email',
-      setting_value: adminEmail,
+      setting_value: targetEmail,
       is_local: true
     })
   } catch (error) {

@@ -2,7 +2,6 @@ import Image from "next/image";
 import { TypeAnimation } from 'react-type-animation';
 import { personalInfo } from "@/data";
 import { useState } from "react";
-import { User } from "lucide-react";
 
 const Introduction = () => {
   const [imageError, setImageError] = useState(false);

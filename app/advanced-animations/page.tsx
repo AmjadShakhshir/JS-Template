@@ -6,6 +6,7 @@ import { Play, Pause, RotateCcw, Download } from "lucide-react";
 import TransitionPage from "@/components/transition-page";
 
 // Create simple JSON animations (since we can't use external Lottie files in this demo)
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const createCodingAnimation = () => ({
   "v": "5.5.7",
   "fr": 24,
@@ -396,7 +397,7 @@ const AdvancedAnimationsPage = () => {
               <div className="text-center p-4">
                 <div className="text-3xl mb-2">⚡</div>
                 <h4 className="font-semibold text-white mb-1">Performance</h4>
-                <p className="text-sm text-gray-400">Optimized animations that don't impact performance</p>
+                <p className="text-sm text-gray-400">Optimized animations that don&apos;t impact performance</p>
               </div>
               <div className="text-center p-4">
                 <div className="text-3xl mb-2">🎯</div>

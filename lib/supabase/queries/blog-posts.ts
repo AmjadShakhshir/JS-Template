@@ -55,6 +55,10 @@ const transformFromLegacyBlogPost = (post: Omit<LegacyBlogPost, 'id'>): BlogPost
 
 export const getAllBlogPosts = async (): Promise<LegacyBlogPost[]> => {
   try {
+    if (!supabase) {
+      throw new BlogPostError('Database not available - using localStorage fallback')
+    }
+
     const { data, error } = await supabase
       .from('blog_posts')
       .select('*')
@@ -73,6 +77,10 @@ export const getAllBlogPosts = async (): Promise<LegacyBlogPost[]> => {
 
 export const getBlogPostBySlug = async (slug: string): Promise<LegacyBlogPost | null> => {
   try {
+    if (!supabase) {
+      throw new BlogPostError('Database not available - using localStorage fallback')
+    }
+
     const { data, error } = await supabase
       .from('blog_posts')
       .select('*')
@@ -95,6 +103,10 @@ export const getBlogPostBySlug = async (slug: string): Promise<LegacyBlogPost | 
 
 export const getBlogPostById = async (id: BlogPostId): Promise<LegacyBlogPost | null> => {
   try {
+    if (!supabase) {
+      throw new BlogPostError('Database not available - using localStorage fallback')
+    }
+
     const { data, error } = await supabase
       .from('blog_posts')
       .select('*')
@@ -117,6 +129,10 @@ export const getBlogPostById = async (id: BlogPostId): Promise<LegacyBlogPost | 
 
 export const createBlogPost = async (post: Omit<LegacyBlogPost, 'id'>): Promise<LegacyBlogPost> => {
   try {
+    if (!supabase) {
+      throw new BlogPostError('Database not available - using localStorage fallback')
+    }
+    
     await ensureAdminAccess()
     
     const insertData = transformFromLegacyBlogPost(post)
@@ -143,6 +159,10 @@ export const updateBlogPost = async (
   updates: Partial<Omit<LegacyBlogPost, 'id'>>
 ): Promise<LegacyBlogPost | null> => {
   try {
+    if (!supabase) {
+      throw new BlogPostError('Database not available - using localStorage fallback')
+    }
+    
     await ensureAdminAccess()
     
     const updateData: BlogPostUpdate = {}
@@ -184,6 +204,10 @@ export const updateBlogPost = async (
 
 export const deleteBlogPost = async (id: string): Promise<boolean> => {
   try {
+    if (!supabase) {
+      throw new BlogPostError('Database not available - using localStorage fallback')
+    }
+    
     await ensureAdminAccess()
     
     const { error } = await supabase
@@ -204,6 +228,10 @@ export const deleteBlogPost = async (id: string): Promise<boolean> => {
 
 export const getFeaturedBlogPosts = async (): Promise<LegacyBlogPost[]> => {
   try {
+    if (!supabase) {
+      throw new BlogPostError('Database not available - using localStorage fallback')
+    }
+
     const { data, error } = await supabase
       .from('blog_posts')
       .select('*')
@@ -223,6 +251,10 @@ export const getFeaturedBlogPosts = async (): Promise<LegacyBlogPost[]> => {
 
 export const getBlogPostsByCategory = async (category: string): Promise<LegacyBlogPost[]> => {
   try {
+    if (!supabase) {
+      throw new BlogPostError('Database not available - using localStorage fallback')
+    }
+
     const { data, error } = await supabase
       .from('blog_posts')
       .select('*')
@@ -242,6 +274,10 @@ export const getBlogPostsByCategory = async (category: string): Promise<LegacyBl
 
 export const getRecentBlogPosts = async (limit: number = 5): Promise<LegacyBlogPost[]> => {
   try {
+    if (!supabase) {
+      throw new BlogPostError('Database not available - using localStorage fallback')
+    }
+
     const { data, error } = await supabase
       .from('blog_posts')
       .select('*')

@@ -1,8 +1,13 @@
-import { supabaseAdmin } from './client'
+import { supabase } from './client'
 import type { ContactSubmission, ContactSubmissionInsert } from './types'
 
 export async function createContactSubmission(submission: ContactSubmissionInsert): Promise<ContactSubmission | null> {
-  const { data, error } = await supabaseAdmin
+  if (!supabase) {
+    console.error('Supabase client not available')
+    return null
+  }
+
+  const { data, error } = await supabase
     .from('contact_submissions')
     .insert(submission)
     .select()
@@ -17,7 +22,12 @@ export async function createContactSubmission(submission: ContactSubmissionInser
 }
 
 export async function getAllContactSubmissions(): Promise<ContactSubmission[]> {
-  const { data, error } = await supabaseAdmin
+  if (!supabase) {
+    console.error('Supabase admin client not available')
+    return []
+  }
+
+  const { data, error } = await supabase
     .from('contact_submissions')
     .select('*')
     .order('created_at', { ascending: false })

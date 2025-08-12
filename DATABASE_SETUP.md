@@ -32,7 +32,7 @@ Update your `.env.local` file with your Supabase credentials:
 ```bash
 # Supabase Configuration
 NEXT_PUBLIC_SUPABASE_URL=your_project_url_here
-SUPABASE_API_KEY=your_anon_key_here
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key_here
 
 # Admin Configuration (already set)
 ADMIN_EMAIL=amjaddevelopment8@gmail.com

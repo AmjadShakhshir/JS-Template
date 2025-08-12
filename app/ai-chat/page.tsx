@@ -128,7 +128,7 @@ const AIChatPage = () => {
                   <Bot className="w-6 h-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-white">Amjad's AI Assistant</h3>
+                  <h3 className="font-semibold text-white">Amjad&apos;s AI Assistant</h3>
                   <p className="text-sm text-gray-400">Always ready to help</p>
                 </div>
                 <div className="ml-auto flex items-center gap-2">

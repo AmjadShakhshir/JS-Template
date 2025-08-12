@@ -37,6 +37,10 @@ export const createContactSubmission = async (
   ipAddress?: string
 ): Promise<ContactSubmission> => {
   try {
+    if (!supabase) {
+      throw new ContactSubmissionError('Supabase client not initialized - check your environment variables')
+    }
+    
     const insertData: ContactSubmissionInsert = {
       name: formData.name,
       email: formData.email,
@@ -66,6 +70,10 @@ export const getAllContactSubmissions = async (): Promise<ContactSubmissionWithT
   try {
     await ensureAdminAccess()
     
+    if (!supabase) {
+      throw new ContactSubmissionError('Supabase client not initialized - check your environment variables')
+    }
+    
     const { data, error } = await supabase
       .from('contact_submissions')
       .select('*')
@@ -94,6 +102,10 @@ export const getContactSubmissionById = async (id: ContactSubmissionId): Promise
   try {
     await ensureAdminAccess()
     
+    if (!supabase) {
+      throw new ContactSubmissionError('Supabase client not initialized - check your environment variables')
+    }
+    
     const { data, error } = await supabase
       .from('contact_submissions')
       .select('*')
@@ -117,6 +129,10 @@ export const getContactSubmissionById = async (id: ContactSubmissionId): Promise
 export const getRecentContactSubmissions = async (limit: number = 10): Promise<ContactSubmissionWithTimestamp[]> => {
   try {
     await ensureAdminAccess()
+    
+    if (!supabase) {
+      throw new ContactSubmissionError('Supabase client not initialized - check your environment variables')
+    }
     
     const { data, error } = await supabase
       .from('contact_submissions')
@@ -147,6 +163,10 @@ export const deleteContactSubmission = async (id: string): Promise<boolean> => {
   try {
     await ensureAdminAccess()
     
+    if (!supabase) {
+      throw new ContactSubmissionError('Supabase client not initialized - check your environment variables')
+    }
+    
     const { error } = await supabase
       .from('contact_submissions')
       .delete()
@@ -170,6 +190,10 @@ export const getContactSubmissionStats = async (): Promise<{
 }> => {
   try {
     await ensureAdminAccess()
+    
+    if (!supabase) {
+      throw new ContactSubmissionError('Supabase client not initialized - check your environment variables')
+    }
     
     const now = new Date()
     const monthStart = new Date(now.getFullYear(), now.getMonth(), 1).toISOString()
