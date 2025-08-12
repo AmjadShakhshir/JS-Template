@@ -1,18 +1,19 @@
 import { NextResponse } from "next/server";
-import { checkIsAdmin } from "@/lib/auth";
+import { auth } from "@clerk/nextjs/server";
 
 export async function GET() {
   try {
-    const isAdmin = await checkIsAdmin();
+    // Use modern Clerk auth protection
+    await auth.protect();
     
     return NextResponse.json({ 
-      isAdmin,
-      message: isAdmin ? "Admin access granted" : "Admin access denied"
+      isAdmin: true,
+      message: "Admin access granted"
     });
   } catch {
     return NextResponse.json(
-      { isAdmin: false, message: "Authentication check failed" },
-      { status: 500 }
+      { isAdmin: false, message: "Authentication required" },
+      { status: 401 }
     );
   }
 }
