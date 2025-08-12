@@ -1,9 +1,6 @@
 import type { BlogPost } from "@/data"
 import { 
   getAllBlogPosts,
-  createBlogPost,
-  updateBlogPost as updateBlogPostDB,
-  deleteBlogPost as deleteBlogPostDB,
   getBlogPostBySlug as getBlogPostBySlugDB,
   getRecentBlogPosts,
 } from "@/lib/supabase/queries/blog-posts"
@@ -11,9 +8,6 @@ import {
 // Fallback to localStorage if Supabase is unavailable
 import { 
   loadBlogPosts as loadFromStorage,
-  addBlogPost as addToStorage,
-  updateBlogPost as updateInStorage,
-  deleteBlogPost as deleteFromStorage,
   getBlogPostBySlug as getFromStorageBySlug,
   getRecentPosts as getRecentFromStorage,
 } from "./blog-storage"
@@ -53,30 +47,6 @@ export const loadBlogPosts = async (): Promise<BlogPost[]> => {
   )
 }
 
-export const addBlogPost = async (post: Omit<BlogPost, 'id'>): Promise<BlogPost> => {
-  return withFallback(
-    () => createBlogPost(post),
-    () => addToStorage(post)
-  )
-}
-
-export const updateBlogPost = async (
-  id: string, 
-  updates: Partial<BlogPost>
-): Promise<BlogPost | null> => {
-  return withFallback(
-    () => updateBlogPostDB(id, updates),
-    () => updateInStorage(id, updates)
-  )
-}
-
-export const deleteBlogPost = async (id: string): Promise<boolean> => {
-  return withFallback(
-    () => deleteBlogPostDB(id),
-    () => deleteFromStorage(id)
-  )
-}
-
 export const getBlogPostBySlug = async (slug: string): Promise<BlogPost | undefined> => {
   const result = await withFallback(
     async () => {
@@ -94,11 +64,3 @@ export const getRecentPosts = async (limit: number = 5): Promise<BlogPost[]> => 
     () => getRecentFromStorage(limit)
   )
 }
-
-// Legacy functions for backward compatibility
-export {
-  loadBlogPosts as loadBlogPostsFromStorage,
-  addBlogPost as addBlogPostToStorage,
-  updateBlogPost as updateBlogPostInStorage,
-  deleteBlogPost as deleteBlogPostFromStorage,
-} from "./blog-storage"
