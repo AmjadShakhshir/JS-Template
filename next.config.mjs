@@ -1,11 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // GitHub Pages static export configuration
-  output: 'export',
-  trailingSlash: true,
+  // Remove static export for Vercel deployment
+  // output: 'export', // Disabled for Vercel
+  // trailingSlash: true, // Not needed for Vercel
   
   images: {
-    unoptimized: true, // Required for static export
+    // unoptimized: true, // Not needed for Vercel - enable optimization
     remotePatterns: [
       {
         protocol: 'https',
@@ -32,6 +32,53 @@ const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   compress: true,
+  
+  // Headers for better caching and security
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
+          },
+          {
+            key: 'X-Frame-Options',
+            value: 'DENY',
+          },
+          {
+            key: 'X-XSS-Protection',
+            value: '1; mode=block',
+          },
+          {
+            key: 'Referrer-Policy',
+            value: 'origin-when-cross-origin',
+          },
+        ],
+      },
+      {
+        source: '/api/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=3600, s-maxage=3600',
+          },
+        ],
+      },
+    ];
+  },
+  
+  // Redirects for better SEO
+  async redirects() {
+    return [
+      {
+        source: '/home',
+        destination: '/',
+        permanent: true,
+      },
+    ];
+  },
   
   // Ensure proper WebSocket handling for HMR
   webpack: (config, { dev, isServer }) => {

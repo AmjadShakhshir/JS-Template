@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+// import { Inter } from "next/font/google"; // Temporarily disabled due to network timeout
 import Script from "next/script";
 
 import "./globals.css";
@@ -10,11 +10,12 @@ import 'swiper/css/scrollbar';
 import ConditionalLayout from "@/components/conditional-layout";
 import { ToastProvider } from "@/components/toast-provider";
 
-const inter = Inter({ 
-  subsets: ["latin"],
-  display: "swap",
-  preload: true,
-});
+// Temporarily using system font fallback instead of Google Font
+// const inter = Inter({ 
+//   subsets: ["latin"],
+//   display: "swap",
+//   preload: true,
+// });
 
 export const metadata: Metadata = {
   title: "Amjad Shakhshir - Full Stack Developer",
@@ -46,7 +47,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://images.unsplash.com" />
       </head>
-      <body className={inter.className}>
+      <body className="font-inter">
         <ToastProvider>
           <ConditionalLayout>
             {children}

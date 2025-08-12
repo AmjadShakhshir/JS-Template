@@ -22,54 +22,27 @@ const ContactPage = () => {
     setIsSubmitting(true);
     
     try {
-      // For static export, we'll store locally and show success message
-      // In a real deployment, you'd integrate with Formspree, Netlify Forms, or similar
-      
-      // Basic validation
-      if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
-        showError('Validation Error', 'All fields are required');
-        return;
-      }
-
-      if (formData.name.length < 2) {
-        showError('Validation Error', 'Name must be at least 2 characters long');
-        return;
-      }
-
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(formData.email)) {
-        showError('Validation Error', 'Please enter a valid email address');
-        return;
-      }
-
-      if (formData.message.length < 10) {
-        showError('Validation Error', 'Message must be at least 10 characters long');
-        return;
-      }
-
-      // Store in localStorage for demonstration
-      const submission = {
-        id: Date.now().toString(),
-        timestamp: new Date().toISOString(),
-        ...formData
-      };
-
-      const existingSubmissions = JSON.parse(localStorage.getItem('contact-submissions') || '[]');
-      existingSubmissions.push(submission);
-      localStorage.setItem('contact-submissions', JSON.stringify(existingSubmissions));
-
-      // Simulate processing delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
-
-      showSuccess('Message sent successfully!', 'Thank you for your message! I will get back to you soon.');
-      
-      // Reset form
-      setFormData({
-        name: '',
-        email: '',
-        message: ''
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       });
 
+      const data = await response.json();
+
+      if (data.success) {
+        showSuccess('Message sent successfully!', data.message);
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          message: ''
+        });
+      } else {
+        showError('Failed to send message', data.error || 'Please try again later.');
+      }
     } catch (error) {
       showError('Network error', 'Please check your connection and try again.');
       console.error('Form submission error:', error);
