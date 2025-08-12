@@ -74,11 +74,12 @@ const ToastNotificationsPage = () => {
         removeToast(id);
       }, toast.duration || 5000);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [autoClose]);
 
   const removeToast = useCallback((id: string) => {
     setToasts(prev => prev.filter(toast => toast.id !== id));
-  }, []);
+  }, [setToasts]);
 
   const clearAllToasts = useCallback(() => {
     setToasts([]);

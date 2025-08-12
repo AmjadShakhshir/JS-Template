@@ -18,4 +18,4 @@ export type {
 } from '../types'
 
 // Re-export clients for advanced use cases
-export { supabase, supabaseAdmin } from '../client'
+export { supabase } from '../client'

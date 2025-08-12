@@ -86,6 +86,7 @@ const SpotifyIntegrationPage = () => {
   const [currentTrack, setCurrentTrack] = useState<Track>(mockTracks[0]);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [volume, setVolume] = useState(75);
   const [isLiked, setIsLiked] = useState(false);
   const [isShuffled, setIsShuffled] = useState(false);
@@ -182,7 +183,7 @@ const SpotifyIntegrationPage = () => {
               Spotify Integration
             </h1>
             <p className="text-gray-300 text-lg">
-              What I'm listening to while coding your next project
+              What I&apos;m listening to while coding your next project
             </p>
           </motion.div>
 

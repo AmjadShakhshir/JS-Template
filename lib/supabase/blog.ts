@@ -1,8 +1,8 @@
-import { supabase, supabaseAdmin } from './client'
+import { supabase } from './client'
 import type { BlogPost, BlogPostInsert, BlogPostUpdate } from './types'
 
 export async function getAllBlogPosts(): Promise<BlogPost[]> {
-  const { data, error } = await supabase
+  const { data, error } = await supabase!
     .from('blog_posts')
     .select('*')
     .order('published_at', { ascending: false })
@@ -16,7 +16,7 @@ export async function getAllBlogPosts(): Promise<BlogPost[]> {
 }
 
 export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {
-  const { data, error } = await supabase
+  const { data, error } = await supabase!
     .from('blog_posts')
     .select('*')
     .eq('slug', slug)
@@ -31,7 +31,7 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
 }
 
 export async function getFeaturedBlogPosts(): Promise<BlogPost[]> {
-  const { data, error } = await supabase
+  const { data, error } = await supabase!
     .from('blog_posts')
     .select('*')
     .eq('featured', true)
@@ -47,7 +47,7 @@ export async function getFeaturedBlogPosts(): Promise<BlogPost[]> {
 }
 
 export async function getBlogPostsByCategory(category: string): Promise<BlogPost[]> {
-  const { data, error } = await supabase
+  const { data, error } = await supabase!
     .from('blog_posts')
     .select('*')
     .eq('category', category)
@@ -63,7 +63,7 @@ export async function getBlogPostsByCategory(category: string): Promise<BlogPost
 
 // Admin operations (require authentication)
 export async function createBlogPost(post: BlogPostInsert): Promise<BlogPost | null> {
-  const { data, error } = await supabaseAdmin
+  const { data, error } = await supabase!
     .from('blog_posts')
     .insert(post)
     .select()
@@ -78,7 +78,7 @@ export async function createBlogPost(post: BlogPostInsert): Promise<BlogPost | n
 }
 
 export async function updateBlogPost(id: string, updates: BlogPostUpdate): Promise<BlogPost | null> {
-  const { data, error } = await supabaseAdmin
+  const { data, error } = await supabase!
     .from('blog_posts')
     .update({ ...updates, updated_at: new Date().toISOString() })
     .eq('id', id)
@@ -94,7 +94,7 @@ export async function updateBlogPost(id: string, updates: BlogPostUpdate): Promi
 }
 
 export async function deleteBlogPost(id: string): Promise<boolean> {
-  const { error } = await supabaseAdmin
+  const { error } = await supabase!
     .from('blog_posts')
     .delete()
     .eq('id', id)
@@ -114,7 +114,7 @@ export async function generateSlug(title: string): Promise<string> {
     .replace(/(^-|-$)+/g, '')
 
   // Check if slug exists and make it unique
-  const { data } = await supabase
+  const { data } = await supabase!
     .from('blog_posts')
     .select('slug')
     .like('slug', `${baseSlug}%`)

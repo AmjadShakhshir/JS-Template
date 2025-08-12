@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { 
   Gamepad2, 
   Play, 
@@ -12,11 +12,7 @@ import {
   Zap,
   Target,
   Brain,
-  Shuffle,
-  ArrowUp,
-  ArrowDown,
-  ArrowLeft,
-  ArrowRight
+  Shuffle
 } from "lucide-react";
 import TransitionPage from "@/components/transition-page";
 
@@ -49,7 +45,7 @@ const SnakeGame = () => {
       }
 
       // Check self collision
-      for (let segment of newSnake) {
+      for (const segment of newSnake) {
         if (newHead[0] === segment[0] && newHead[1] === segment[1]) {
           setGameOver(true);
           setIsPlaying(false);
@@ -364,7 +360,7 @@ const ReactionGame = () => {
             <div>
               <Timer className="w-16 h-16 mx-auto mb-4" />
               <h4 className="text-xl font-bold mb-2">Wait for Green...</h4>
-              <p>Don't click yet!</p>
+              <p>Don&apos;t click yet!</p>
             </div>
           )}
           {gameState === 'go' && (
@@ -436,6 +432,7 @@ const NumberGuessGame = () => {
 
   useEffect(() => {
     startGame();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [range]);
 
   return (

@@ -22,6 +22,8 @@ import {
   updateBlogPost, 
   deleteBlogPost 
 } from "@/lib/database";
+import { useUser } from "@clerk/nextjs";
+import { redirect } from "next/navigation";
 
 interface BlogFormData {
   title: string;
@@ -36,6 +38,7 @@ interface BlogFormData {
 }
 
 const AdminPanel = () => {
+  const { user, isLoaded } = useUser();
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [isEditing, setIsEditing] = useState(false);
   const [editingPost, setEditingPost] = useState<BlogPost | null>(null);
@@ -51,6 +54,13 @@ const AdminPanel = () => {
     featured: false,
     imageUrl: "",
   });
+
+  // Check if user is admin
+  useEffect(() => {
+    if (isLoaded && (!user || user.emailAddresses[0]?.emailAddress !== process.env.NEXT_PUBLIC_ADMIN_EMAIL)) {
+      redirect('/');
+    }
+  }, [user, isLoaded]);
 
   // Load posts on component mount
   useEffect(() => {
@@ -77,6 +87,23 @@ const AdminPanel = () => {
       setFormData(prev => ({ ...prev, slug }));
     }
   }, [formData.title, editingPost]);
+
+  // Show loading while checking auth
+  if (!isLoaded) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Don't render if not admin
+  if (!user || user.emailAddresses[0]?.emailAddress !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
+    return null;
+  }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;

@@ -12,7 +12,6 @@ import {
   Award,
   ChevronDown,
   ChevronUp,
-  Users,
   Zap
 } from "lucide-react";
 import TransitionPage from "@/components/transition-page";

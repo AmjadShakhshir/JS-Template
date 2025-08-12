@@ -20,7 +20,12 @@ import {
 
 // Environment check for database availability
 const isDatabaseAvailable = () => {
-  return !!(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.SUPABASE_API_KEY)
+  // Check server-side env vars
+  if (typeof window === 'undefined') {
+    return !!(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY)
+  }
+  // Check client-side env vars
+  return !!(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY)
 }
 
 // Enhanced error handling with fallback to localStorage

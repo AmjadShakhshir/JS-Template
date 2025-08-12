@@ -83,7 +83,7 @@ ADMIN_EMAIL=your-admin@email.com
 
 # Supabase Database
 NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
-SUPABASE_API_KEY=your_anon_key
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
 
 # Optional: Performance
 NEXT_TELEMETRY_DISABLED=1
